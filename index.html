@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#14121c">
 <title>Magic Survival · Spells & fusions</title>
-<meta name="description" content="Magic Survival companion: spell attributes, fusions and ultimates with tiers, in English.">
+<meta name="description" content="Magic Survival companion: spell attributes, fusions and Ultimas with tiers.">
 <style>
 :root{color-scheme:dark;--bg:#14121c;--panel:#1d1a29;--panel2:#252135;--line:#3a3450;--muted:#a9a3bf;--ink:#f1eef9;--accent:#b99cff;
 --tS:#ff6b6b;--tA:#ff9f43;--tB:#ffd166;--tC:#7bd88f;--tD:#6cb6ff;--tE:#8b87a0;--tX:#5a5470;
@@ -27,21 +27,24 @@ nav a.on{background:var(--panel2);color:var(--ink)}
 .search input{flex:1;background:none;border:0;outline:0;min-width:0}
 h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin:26px 0 10px;font-weight:700}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.card{display:block;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--el);border-radius:10px;padding:11px 13px;transition:border-color .15s,transform .15s}
+.card{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--el);border-radius:10px;padding:10px 12px;transition:border-color .15s,transform .15s}
 .card:hover{border-color:var(--accent);border-left-color:var(--el);transform:translateY(-1px)}
-.card .nm{font-weight:700;font-size:17px}
-.card .jp{color:var(--muted);font-size:13px;margin-left:6px;font-weight:400}
-.sum{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;font-size:13px;color:var(--muted)}
+.card .nm{display:block;font-weight:700;font-size:17px}
+.sum{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;font-size:13px;color:var(--muted)}
 .sum span{display:inline-flex;align-items:center;gap:5px}
 .t{display:inline-grid;place-items:center;min-width:24px;height:22px;padding:0 5px;border-radius:5px;font-weight:800;font-size:13px;color:#16121f;background:var(--tE)}
 .t.S{background:var(--tS)}.t.A{background:var(--tA)}.t.B{background:var(--tB)}.t.C{background:var(--tC)}.t.D{background:var(--tD)}.t.E{background:var(--tE)}.t.X{background:var(--tX);color:#fff}.t.N{background:transparent;border:1px dashed var(--line);color:var(--muted)}
 .t.big{min-width:34px;height:30px;font-size:17px;border-radius:7px}
+.ic{display:inline-block;flex:none;object-fit:contain;border-radius:8px;vertical-align:middle}
+.ic.xs{width:20px;height:20px;border-radius:4px;margin-right:4px}.ic.sm{width:36px;height:36px}.ic.md{width:48px;height:48px}.ic.lg{width:64px;height:64px;border-radius:12px}
+.ic.ph{background:var(--panel2);border:1px dashed var(--line)}
+.lnk{display:inline-flex;align-items:center;white-space:nowrap}
+.sub{color:var(--muted);font-weight:400;font-size:13px}
 .el{width:10px;height:10px;border-radius:50%;background:var(--el);display:inline-block}
 /* detail */
 .back{display:inline-block;margin:16px 0 0;color:var(--muted);text-decoration:none}
-.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin:10px 0 4px}
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:10px 0 4px}
 .head h1{margin:0;font-size:30px}
-.head .jp{color:var(--muted)}
 .verdict{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0}
 .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px 18px;font-size:14px;color:var(--muted);margin:10px 0}
 .meta b{color:var(--ink);font-weight:600}
@@ -50,7 +53,6 @@ h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mute
 .row{display:flex;gap:10px;align-items:flex-start}
 .row .body{flex:1;min-width:0}
 .ttl{font-weight:700}
-.ttl .jp{font-weight:400;color:var(--muted);font-size:13px;margin-left:6px}
 .desc{color:var(--muted);font-size:14px;margin-top:2px}
 .kids{list-style:none;margin:10px 0 0 13px;padding:0 0 0 18px;border-left:2px solid var(--line)}
 .kids>li{position:relative;padding:8px 0}
@@ -66,9 +68,9 @@ summary{cursor:pointer;color:var(--muted);font-size:13px}
 /* tier list */
 .tierrow{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:start;border-bottom:1px solid var(--line);padding:10px 0}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--el);border-radius:8px;padding:5px 10px;text-decoration:none;color:var(--ink);font-size:14px;line-height:1.3}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--el);border-radius:8px;padding:5px 10px;text-decoration:none;color:var(--ink);font-size:14px;line-height:1.3}
 .chip:hover{border-color:var(--accent);border-left-color:var(--el)}
-.chip small{color:var(--muted);font-size:12px}
+.chip small{display:block;color:var(--muted);font-size:12px}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{color:var(--muted);font-weight:600}
@@ -78,222 +80,251 @@ footer{margin-top:40px;font-size:13px;color:var(--muted)}
 @media (max-width:600px){.shell{padding:0 14px 40px}.head h1{font-size:24px}.kids{margin-left:6px;padding-left:14px}.kids>li::before{left:-14px;width:10px}}
 </style></head>
 <body><div class="shell">
-<header><a class="brand" href="#/">Magic Survival <small>spells · fusions · ultimates</small></a>
+<header><a class="brand" href="#/">Magic Survival <small>spells · fusions · Ultimas</small></a>
 <nav id="nav"><a href="#/" data-k="spells">Spells</a><a href="#/tiers" data-k="tiers">Tier lists</a><a href="#/passives" data-k="passives">Passives</a><a href="#/about" data-k="about">About</a></nav></header>
 <main id="app"></main>
-<footer>Tiers: <a href="https://w.atwiki.jp/magicsurvival/pages/15.html">マジサバwiki</a> (atomon, v0.981, page updated 22 Oct 2026), translated. English names & descriptions: <a href="https://magic-survival-rpg.fandom.com/">Magic Survival Fandom wiki</a> (CC BY-SA). Unofficial fan tool.</footer>
+<footer>Tiers: atomon’s tier list (game v0.981). Names, icons and descriptions: <a href="https://magic-survival-rpg.fandom.com/">Magic Survival Fandom wiki</a> (CC BY-SA). Unofficial fan tool.</footer>
 </div>
 <script>
 // ---------- DATA ----------
-// Tiers: S A B C D E X (X = "×", worse than E). Attribute tiers ignore fusions (as on the JP wiki).
-const EL={fire:'Fire',storm:'Lightning',nature:'Nature',energy:'Energy',arcane:'Magic Bolt',support:'Utility'};
+// Tiers: S A B C D E X (X = worse than E). Attribute tiers ignore fusions.
+const EL={"fire":"Fire","storm":"Lightning","nature":"Nature","energy":"Energy","arcane":"Magic Bolt","support":"Utility"};
 const SPELLS=[
-{id:'bolt',en:'Magic Bolt',jp:'魔力弾',el:'arcane',lv:'Lv2 Number +1 · Lv3 Damage +50% · Lv4 attribute · Lv5 Number +1 · Lv6 Damage +50% · Lv7 attribute',ench:'Damage +50%, cooldown −5%',art:['Magic Bullet','Shuriken','Ether Arrow','Freeshooter'],
- note:'Magic Bolt gets two attributes: one at Lv4 and one at Lv7.',
- attrs:[['arrow','Magic Arrow','魔力の矢','B','Pierces all enemies. Damage +80%, size +180%, speed +180%.',4],
-  ['fireworks','Fireworks','花火','C','Bolts split into three and explode. Damage +50%, cooldown +2 s.',4,'Firecracker (爆竹)'],
-  ['fission','Fission','分裂','D','Bolts are also fired at 2 extra targets.',4],
-  ['chain','Chain Casting','連続詠唱','D','Number +1, cooldown −20%.',7],
-  ['faw','Fire at Will','乱射','C','Fired in random directions. Number ×5, damage +50%, cooldown +3 s.',7],
-  ['dopp','Doppelganger','ドッペルゲンガー','B','Instead of firing, summons 3 mirages that fire Magic Bolts. Cooldown +50%.',7]]},
-{id:'fireball',en:'Fireball',jp:'火炎球',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, size +10%',art:['Torch','Cauldron',"Phoenix's Bow",'Candlestick'],
- attrs:[['bigbang','Big Bang','大爆発','D','First Fireball of each cast gets ×1.5 damage and size. Damage +80%.'],
-  ['gas','Poison Gas','毒ガス','C','Explosion expands and hits 3 times. Damage −30%.',0,'Toxic Gas'],
-  ['const','Constellation','星座','E','Fired at random spots, lingers and follows you while slowing down. Piercing +1.']]},
-{id:'thunder',en:'Thunderstorm',jp:'落雷',el:'storm',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Lightning Rod','Lightning','Mjolnir'],
- attrs:[['clap','Thunderclap','晴天の霹靂','C','Spawns 1–3 times in a row. Cooldown −25%.'],
-  ['lexp','Lightning Explosion','雷爆発','C','Explosion expands; spawns one after another at random spots. Damage +80%.'],
-  ['judg','Judgement','審判','C','All Thunderstorms merge into one (size +20% each) and deal half damage around the blast. Damage ×5, cooldown ×2.']]},
-{id:'meteor',en:'Meteor',jp:'隕石落下',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Celestial Calendar',"Pandora's Box",'Cauldron','Dimensional Gate','Candlestick'],
- attrs:[['volcano','Volcanic Eruption','火山爆発','C','Explodes instantly, leaving a crater that deals 25% damage per second for 3 s.'],
-  ['shower','Meteor Shower','流星群','D','Number ×3, spawn interval −30%, damage −25%, size −25%.'],
-  ['asteroid','Asteroid','小惑星','C','All Meteors merge into one (size +50% each). Damage ×3, cooldown ×2.']]},
-{id:'cyclone',en:'Cyclone',jp:'つむじ風',el:'nature',lv:'Number +1 · Damage +50% · Duration +30% · Number +1 · Damage +50%',ench:'Damage +50%, duration +15%',art:['Totem',"Pandora's Box",'Weather Controller','Palm Leaf Fan'],
- attrs:[['extreme','Extreme Weather','気象異変','B','Number +2, cooldown −10%.',0,'Climate Change'],
-  ['orb','Electric Orb','電気球体','B','Shrinks over time while firing projectiles in random directions. Damage ×2, size +30%.'],
-  ['void','Void','ボイド','E','Spawned one after another at random spots, where they stay. Growth speed ×9, duration −50%, cooldown ×2.']]},
-{id:'shock',en:'Electric Shock',jp:'電気ショック',el:'storm',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Lightning Rod','Lightning','Electric Cable'],
- attrs:[['chain','Chain Lightning','連鎖する雷','B','Chains 1–3 times. Damage +50%.'],
-  ['output','High Output','高出力','C','50% chance to deal ×2.5 damage. Cooldown −15%.'],
-  ['super','Superconductivity','超伝導','C','Fired one after another at nearby enemies. Damage ×3, size ×2.']]},
-{id:'ebolt',en:'Energy Bolt',jp:'エネルギー弾',el:'energy',lv:'Damage +20% & Number +2 at every level',ench:'Damage +50%, size +10%',art:['Magitech Module','Mana Scepter','Machine Arm','Mirror'],
- attrs:[['charged','Charged Particles','荷電粒子','D','Bolts fly back to you at the end of their duration. Number +35%, speed +35%.'],
-  ['spark','Spark','スパーク','E','Hits every 0.3 s. Duration ×2.5, size +25%, damage −25%.'],
-  ['flare','Flare','フレア','D','Spread in all directions at once and explode with double power at the end. Damage +30%.']]},
-{id:'incin',en:'Incineration',jp:'焼却',el:'fire',lv:'Number +6 · Damage +50% · Size +20% · Number +6 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Torch','Salamander','Cauldron',"Dragon's Breath"],
- attrs:[['strike','Flame Strike','火炎強打','B','Power ramps up while it keeps firing (max ×4 damage, ×1.5 size). Number +25%.'],
-  ['pyro','Pyromaniac','放火魔','S','Every launch spawns 2 extra flames of equal damage. Cooldown −20%.'],
-  ['cerb','Cerberus Flame','ケルベロスの炎','C','Also fires sideways. Damage +30%, range +20%, width −33%, number −33%.']]},
-{id:'blizzard',en:'Blizzard',jp:'吹雪',el:'nature',lv:'Number +6 · Damage +50% · Cooldown −15% · Number +6 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Snowman','Weather Controller','Snowflake Crown','Skadi'],
- attrs:[['subzero','Sub-Zero','極寒期','S','While active, all enemies slow down by 3% per second (resets afterwards). Number +30%.'],
-  ['star','Shooting Star','流れ星','D','Falls more slowly. Damage ×2, size ×1.35, number −50%, spawn interval ×2.'],
-  ['blaze','Conflagration','火災','E','Explodes twice right away (−10% power each) and no longer freezes. Spawn interval −30%, spawn radius −30%.',0,'Blaze']]},
-{id:'tsunami',en:'Tsunami',jp:'津波',el:'nature',lv:'Number +3 · Damage +50% · Cooldown −15% · Number +3 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:["Pandora's Box",'Weather Controller','Wave-calming Flute','Chimera'],
- attrs:[['pole','Pole','極点','A','Waves spawn in all directions at once and freeze enemies.'],
-  ['siren',"Siren's Song",'セイレーンの歌','E','Spawns closer to where you are heading. Cooldown −50%, number −50%.'],
-  ['eruption','Great Eruption','大噴火','E','Wider spawn radius. Damage ×2, size +10%, cooldown +30%.']]},
-{id:'spirit',en:'Spirit',jp:'精霊',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Firefly','Shuriken','Magic Wand','Ether Arrow','Mana Scepter','Mirror'],
- attrs:[['missile','Magic Missile','魔法ミサイル','C','Cooldown shrinks with the number of Spirits; launch interval equals the cooldown. Cooldown −20%.'],
-  ['blade','Magic Blade','魔力の刃','C','A blade-shaped projectile is hurled at the target instantly. Damage ×2.5.'],
-  ['familiar','Familiar','使い魔','C','Spirits merge into one that fires missiles in all directions (+15 shots per Spirit). Attack interval ÷5, cooldown ×5.']]},
-{id:'satellite',en:'Satellite',jp:'衛星',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, rotation speed +25%',art:['Glass Orb','Electromagnet','Core Energy','Mana Scepter','Circular Sawblade','Mirror'],
- attrs:[['anti','Anti-Gravity','反重力','E','Rotation speed ramps up to ×3, then resets.'],
-  ['wisp',"Will o' the Wisp",'鬼火','E','Splits into two rings. Number ×2, rotation +33%, size −33%.'],
-  ['fusion','Nuclear Fusion','核融合','B','Satellites merge into one that hits every 0.3 s; +1 damage and size multiplier per Satellite. Rotation −50%.',0,'Nuclear Fission']]},
-{id:'ray',en:'Arcane Ray',jp:'怪光線',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Crystal Prism','Otherworldly Tentacles','Mana Scepter','Mirror'],
- attrs:[['reflect','Reflect','反射','B','Every ray also fires straight behind (twice the rays). Damage +50%, generation interval −50%.'],
-  ['disint','Disintegration Ray','破壊光線','C','The ray spins fast around you. Damage ×2, cooldown +50%.'],
-  ['emb','Electromagnetic Burst','電磁波放射','B','Fires 1 to max rays in random directions, hitting every 0.5 s. Duration ×4.']]},
-{id:'ezone',en:'Electric Zone',jp:'感電地帯',el:'storm',lv:'Size +15% · Damage +50% · Size +15% · Size +20% · Damage +50%',ench:'Damage +50%, size +10%',art:['Battery','Electromagnet','Lightning','Robot'],
- attrs:[['blast','Electricity Blast','電荷放出','E','Damage +80%, size +30%.'],
-  ['emp','EMP','EMP','B','Enemies are stunned every 4th hit. Damage interval −10%.'],
-  ['aura','Fire Aura','火のオーラ','E','No longer ticks: expands and vanishes in cycles (faster with a shorter interval). Damage ×5, interval ×3.']]},
-{id:'frost',en:'Frost Nova',jp:'霜柱',el:'nature',lv:'Size +15% · Damage +50% · Cooldown −15% · Size +20% · Damage +50%',ench:'Damage +50%, size +10%',art:['Snowman','Moon Crystal','Weather Controller','Skadi'],
- attrs:[['zero','Absolute Zero','絶対零度','S','Also freezes enemies near the explosion, not just inside it. Freeze duration +25%.'],
-  ['iceage','Ice Age','氷河期','B','Explodes 3 times in a row, ×1.5 damage and size each time. Size −20%, cooldown ×2.'],
-  ['quake','Earthquake','地震','C','Stuns instead of freezing. Damage ×2, size +25%.']]},
-{id:'lava',en:'Lava Zone',jp:'溶岩地帯',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Salamander','Cauldron','Sulfur','Chimera'],
- attrs:[['melt','Melt','融解','E','Each hit makes the enemy take +5% damage from everything (max +30%). Cooldown −15%.'],
-  ['crater','Crater','噴火口','E','Number ×2, size −20%, duration −20%.'],
-  ['magma','Magma Eruption','マグマ噴出','E','Lava Zones merge into one (size +30% each). Damage ×2, cooldown ×2.']]},
-{id:'flash',en:'Flash Shock',jp:'閃光ショック',el:'storm',lv:'Size +15% · Damage +50% · Size +15% · Cooldown −20% · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Lightning','Gáe Bolg','Chimera'],
- attrs:[['wipeout','Wipeout','殲滅','C','Central beam damage ×10. Size +30%.',0,'Extermination'],
-  ['ragnarok','Ragnarok','ラグナロク','C','Wider spawn radius. Number +5, cooldown ×2.'],
-  ['nails',"Satan's Nails",'悪魔の爪','D','Spawns at random spots moving randomly, with extra shocks on both sides; +1 per cast, resets every 4th. Damage +33%, size −50%.']]},
-{id:'shield',en:'Shield',jp:'シールド',el:'support',lv:'Cooldown −10% at Lv2–4, attribute at Lv5',art:[],
- attrs:[['barrier','Barrier','バリア','A','Max Shields +2.'],
-  ['recon','Reconstruct','再構築','S','Shields recharge 2 at a time. Max Shields +1, cooldown +20%.'],
-  ['field','Destruction Field','破壊場','D','A broken Shield explodes; the explosion follows you and hits 4 times.']]},
-{id:'cloak',en:'Cloaking',jp:'幽体化',el:'support',lv:'Duration +30% at Lv2–4, attribute at Lv5',art:[],
- attrs:[['mirage','Mirage','蜃気楼','S','Cloaking duration +80%.'],
-  ['warp','Space Warp','空間歪曲','C','When Cloaking ends, a powerful explosion goes off around you.'],
-  ['harvest','Soul Harvest','魂収穫','D','While cloaked, heal 0.1% HP per kill; mana gain +33%.']]},
-{id:'circle',en:'Magic Circle',jp:'魔法陣',el:'support',lv:'Amplify +5% & duration +20% at Lv2–4, attribute at Lv5',art:['Ancient Tree Staff'],
- attrs:[['unleash','Unleash Mana','魔力開放','S','All cooldowns −15% while the circle is active. Circle cooldown −15%.'],
-  ['synth','Material Synthesis','物質錬成','D','Casting spawns 5 items nearby. Mana gain +15%.'],
-  ['great','Great Magic Circle','大魔法陣','D','Circle effect ×2. Duration +33%, cooldown +33%.']]},
-{id:'armageddon',en:'Armageddon',jp:'アルマゲドン',el:'support',lv:'Cooldown −10% at Lv2–4, attribute at Lv5',art:[],
- attrs:[['apoc','Apocalypse','アポカリプス','B','After the blast, all enemies lose 40% HP, recovering over 20 s.'],
-  ['rapture','Rapture','携挙','B','Full heal every 4th cast. HP regen +0.1%/s.'],
-  ['doom','Doom Prophet','終末の予言','S','Each Mana Orb picked up cuts 1 s off the current cooldown. Cooldown −10%.']]}
+{id:'bolt',en:'Magic Bolt',el:'arcane',lv:'Lv2 Number +1 · Lv3 Damage +50% · Lv4 attribute · Lv5 Number +1 · Lv6 Damage +50% · Lv7 attribute',ench:'Damage +50%, cooldown −5%',art:['Magic Bullet','Shuriken','Ether Arrow','Freeshooter'],note:'Magic Bolt gets two attributes: one at Lv4 and one at Lv7.',
+ attrs:[
+  ['arrow','Magic Arrow','B','Pierces all enemies. Damage +80%, size +180%, speed +180%.',4,''],
+  ['fireworks','Firecracker','C','Bolts split into three and explode. Damage +50%, cooldown +2 s.',4,'Fireworks'],
+  ['fission','Fission','D','Bolts are also fired at 2 extra targets.',4,''],
+  ['chain','Chain Casting','D','Number +1, cooldown −20%.',7,''],
+  ['faw','Fire at Will','C','Fired in random directions. Number ×5, damage +50%, cooldown +3 s.',7,''],
+  ['dopp','Doppelganger','B','Instead of firing, summons 3 mirages that fire Magic Bolts. Cooldown +50%.',7,'']]},
+{id:'fireball',en:'Fireball',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, size +10%',art:['Torch','Cauldron','Phoenix\'s Bow','Candlestick'],
+ attrs:[
+  ['bigbang','Big Bang','D','First Fireball of each cast gets ×1.5 damage and size. Damage +80%.',0,''],
+  ['gas','Toxic Gas','C','Explosion expands and hits 3 times. Damage −30%.',0,'Poison Gas'],
+  ['const','Constellation','E','Fired at random spots, lingers and follows you while slowing down. Piercing +1.',0,'']]},
+{id:'thunder',en:'Thunderstorm',el:'storm',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Lightning Rod','Lightning','Mjolnir'],
+ attrs:[
+  ['clap','Thunderclap','C','Spawns 1–3 times in a row. Cooldown −25%.',0,''],
+  ['lexp','Lightning Explosion','C','Explosion expands; spawns one after another at random spots. Damage +80%.',0,''],
+  ['judg','Judgment','C','All Thunderstorms merge into one (size +20% each) and deal half damage around the blast. Damage ×5, cooldown ×2.',0,'Judgement']]},
+{id:'meteor',en:'Meteor',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Celestial Calendar','Pandora\'s Box','Cauldron','Dimensional Gate','Candlestick'],
+ attrs:[
+  ['volcano','Volcanic Eruption','C','Explodes instantly, leaving a crater that deals 25% damage per second for 3 s.',0,''],
+  ['shower','Meteor Shower','D','Number ×3, spawn interval −30%, damage −25%, size −25%.',0,''],
+  ['asteroid','Asteroid','C','All Meteors merge into one (size +50% each). Damage ×3, cooldown ×2.',0,'']]},
+{id:'cyclone',en:'Cyclone',el:'nature',lv:'Number +1 · Damage +50% · Duration +30% · Number +1 · Damage +50%',ench:'Damage +50%, duration +15%',art:['Totem','Pandora\'s Box','Weather Controller','Palm Leaf Fan'],
+ attrs:[
+  ['extreme','Extreme Weather','B','Number +2, cooldown −10%.',0,'Climate Change'],
+  ['orb','Electric Orb','B','Shrinks over time while firing projectiles in random directions. Damage ×2, size +30%.',0,''],
+  ['void','Void','E','Spawned one after another at random spots, where they stay. Growth speed ×9, duration −50%, cooldown ×2.',0,'']]},
+{id:'shock',en:'Electric Shock',el:'storm',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Lightning Rod','Lightning','Electric Cable'],
+ attrs:[
+  ['chain','Chain Lightning','B','Chains 1–3 times. Damage +50%.',0,''],
+  ['output','High Output','C','50% chance to deal ×2.5 damage. Cooldown −15%.',0,''],
+  ['super','Superconductivity','C','Fired one after another at nearby enemies. Damage ×3, size ×2.',0,'']]},
+{id:'ebolt',en:'Energy Bolt',el:'energy',lv:'Damage +20% & Number +2 at every level',ench:'Damage +50%, size +10%',art:['Magitech Module','Mana Scepter','Machine Arm','Mirror'],
+ attrs:[
+  ['charged','Charged Particles','D','Bolts fly back to you at the end of their duration. Number +35%, speed +35%.',0,''],
+  ['spark','Spark','E','Hits every 0.3 s. Duration ×2.5, size +25%, damage −25%.',0,''],
+  ['flare','Flare','D','Spread in all directions at once and explode with double power at the end. Damage +30%.',0,'']]},
+{id:'incin',en:'Incineration',el:'fire',lv:'Number +6 · Damage +50% · Size +20% · Number +6 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Torch','Salamander','Cauldron','Dragon\'s Breath'],
+ attrs:[
+  ['strike','Flamestrike','B','Power ramps up while it keeps firing (max ×4 damage, ×1.5 size). Number +25%.',0,'Flame Strike'],
+  ['pyro','Pyromaniac','S','Every launch spawns 2 extra flames of equal damage. Cooldown −20%.',0,''],
+  ['cerb','Cerberus Flame','C','Also fires sideways. Damage +30%, range +20%, width −33%, number −33%.',0,'']]},
+{id:'blizzard',en:'Blizzard',el:'nature',lv:'Number +6 · Damage +50% · Cooldown −15% · Number +6 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Snowman','Weather Controller','Snowflake Crown','Skadi'],
+ attrs:[
+  ['subzero','Sub-Zero','S','While active, all enemies slow down by 3% per second (resets afterwards). Number +30%.',0,''],
+  ['star','Shooting Star','D','Falls more slowly. Damage ×2, size ×1.35, number −50%, spawn interval ×2.',0,''],
+  ['blaze','Conflagration','E','Explodes twice right away (−10% power each) and no longer freezes. Spawn interval −30%, spawn radius −30%.',0,'Blaze']]},
+{id:'tsunami',en:'Tsunami',el:'nature',lv:'Number +3 · Damage +50% · Cooldown −15% · Number +3 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Pandora\'s Box','Weather Controller','Wave-calming Flute','Chimera'],
+ attrs:[
+  ['pole','Pole','A','Waves spawn in all directions at once and freeze enemies.',0,''],
+  ['siren','Siren\'s Song','E','Spawns closer to where you are heading. Cooldown −50%, number −50%.',0,''],
+  ['eruption','Great Eruption','E','Wider spawn radius. Damage ×2, size +10%, cooldown +30%.',0,'']]},
+{id:'spirit',en:'Spirit',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Firefly','Shuriken','Magic Wand','Ether Arrow','Mana Scepter','Mirror'],
+ attrs:[
+  ['missile','Magic Missile','C','Cooldown shrinks with the number of Spirits; launch interval equals the cooldown. Cooldown −20%.',0,''],
+  ['blade','Magic Blade','C','A blade-shaped projectile is hurled at the target instantly. Damage ×2.5.',0,''],
+  ['familiar','Familiar','C','Spirits merge into one that fires missiles in all directions (+15 shots per Spirit). Attack interval ÷5, cooldown ×5.',0,'']]},
+{id:'satellite',en:'Satellite',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, rotation speed +25%',art:['Glass Orb','Electromagnet','Core Energy','Mana Scepter','Circular Sawblade','Mirror'],
+ attrs:[
+  ['anti','Anti-Gravity','E','Rotation speed ramps up to ×3, then resets.',0,''],
+  ['wisp','Will o\' the Wisp','E','Splits into two rings. Number ×2, rotation +33%, size −33%.',0,''],
+  ['fusion','Nuclear Fusion','B','Satellites merge into one that hits every 0.3 s; +1 damage and size multiplier per Satellite. Rotation −50%.',0,'Nuclear Fission']]},
+{id:'ray',en:'Arcane Ray',el:'energy',lv:'Damage +20% & Number +1 at every level',ench:'Damage +50%, cooldown −5%',art:['Crystal Prism','Otherworldly Tentacles','Mana Scepter','Mirror'],
+ attrs:[
+  ['reflect','Reflect','B','Every ray also fires straight behind (twice the rays). Damage +50%, generation interval −50%.',0,''],
+  ['disint','Disintegration Ray','C','The ray spins fast around you. Damage ×2, cooldown +50%.',0,''],
+  ['emb','Electromagnetic Burst','B','Fires 1 to max rays in random directions, hitting every 0.5 s. Duration ×4.',0,'']]},
+{id:'ezone',en:'Electric Zone',el:'storm',lv:'Size +15% · Damage +50% · Size +15% · Size +20% · Damage +50%',ench:'Damage +50%, size +10%',art:['Battery','Electromagnet','Lightning','Robot'],
+ attrs:[
+  ['blast','Electricity Blast','E','Damage +80%, size +30%.',0,''],
+  ['emp','EMP','B','Enemies are stunned every 4th hit. Damage interval −10%.',0,''],
+  ['aura','Fire Aura','E','No longer ticks: expands and vanishes in cycles (faster with a shorter interval). Damage ×5, interval ×3.',0,'']]},
+{id:'frost',en:'Frost Nova',el:'nature',lv:'Size +15% · Damage +50% · Cooldown −15% · Size +20% · Damage +50%',ench:'Damage +50%, size +10%',art:['Snowman','Moon Crystal','Weather Controller','Skadi'],
+ attrs:[
+  ['zero','Absolute Zero','S','Also freezes enemies near the explosion, not just inside it. Freeze duration +25%.',0,''],
+  ['iceage','Ice Age','B','Explodes 3 times in a row, ×1.5 damage and size each time. Size −20%, cooldown ×2.',0,''],
+  ['quake','Earthquake','C','Stuns instead of freezing. Damage ×2, size +25%.',0,'']]},
+{id:'lava',en:'Lava Zone',el:'fire',lv:'Number +1 · Damage +50% · Size +20% · Number +1 · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Salamander','Cauldron','Sulfur','Chimera'],
+ attrs:[
+  ['melt','Melt','E','Each hit makes the enemy take +5% damage from everything (max +30%). Cooldown −15%.',0,''],
+  ['crater','Crater','E','Number ×2, size −20%, duration −20%.',0,''],
+  ['magma','Magma Eruption','E','Lava Zones merge into one (size +30% each). Damage ×2, cooldown ×2.',0,'']]},
+{id:'flash',en:'Flash Shock',el:'storm',lv:'Size +15% · Damage +50% · Size +15% · Cooldown −20% · Damage +50%',ench:'Damage +50%, cooldown −5%',art:['Lightning','Gáe Bolg','Chimera'],
+ attrs:[
+  ['wipeout','Wipeout','C','Central beam damage ×10. Size +30%.',0,'Extermination'],
+  ['ragnarok','Ragnarok','C','Wider spawn radius. Number +5, cooldown ×2.',0,''],
+  ['nails','Satan\'s Nails','D','Spawns at random spots moving randomly, with extra shocks on both sides; +1 per cast, resets every 4th. Damage +33%, size −50%.',0,'']]},
+{id:'shield',en:'Shield',el:'support',lv:'Cooldown −10% at Lv2–4, attribute at Lv5',art:[],
+ attrs:[
+  ['barrier','Barrier','A','Max Shields +2.',0,''],
+  ['recon','Reconstruct','S','Shields recharge 2 at a time. Max Shields +1, cooldown +20%.',0,''],
+  ['field','Destruction Field','D','A broken Shield explodes; the explosion follows you and hits 4 times.',0,'']]},
+{id:'cloak',en:'Cloaking',el:'support',lv:'Duration +30% at Lv2–4, attribute at Lv5',art:[],
+ attrs:[
+  ['mirage','Mirage','S','Cloaking duration +80%.',0,''],
+  ['warp','Space Warp','C','When Cloaking ends, a powerful explosion goes off around you.',0,''],
+  ['harvest','Soul Harvest','D','While cloaked, heal 0.1% HP per kill; mana gain +33%.',0,'']]},
+{id:'circle',en:'Magic Circle',el:'support',lv:'Amplify +5% & duration +20% at Lv2–4, attribute at Lv5',art:['Ancient Tree Staff'],
+ attrs:[
+  ['unleash','Unleash Mana','S','All cooldowns −15% while the circle is active. Circle cooldown −15%.',0,''],
+  ['synth','Material Synthesis','D','Casting spawns 5 items nearby. Mana gain +15%.',0,''],
+  ['great','Great Magic Circle','D','Circle effect ×2. Duration +33%, cooldown +33%.',0,'']]},
+{id:'armageddon',en:'Armageddon',el:'support',lv:'Cooldown −10% at Lv2–4, attribute at Lv5',art:[],
+ attrs:[
+  ['apoc','Apocalypse','B','After the blast, all enemies lose 40% HP, recovering over 20 s.',0,''],
+  ['rapture','Rapture','B','Full heal every 4th cast. HP regen +0.1%/s.',0,''],
+  ['doom','Doom Prophet','S','Each Mana Orb picked up cuts 1 s off the current cooldown. Cooldown −10%.',0,'']]}
 ];
-// Fusions: [id, EN, JP, tier, DEM tier, primary "spell.attr", secondary "spell.attr" | "passive:Name", description (Fandom, v0.956), extra]
+// Fusions: [id, name, tier, Deus Ex Machina tier, primary "spell.attr", secondary "spell.attr" | "passive:Name" | "fusion:id", description (Fandom wiki, v0.956), note, tier variants]
 const FUSIONS=[
-['empyrean','Empyrean Wrath','蒼天の怒り','E','E','thunder.lexp','meteor.shower','Thunderstorm explosions cover a wider area but no longer expand. Damage ×5, number ×3.'],
-['telesword','Telekinetic Sword','以気御剣','E','E','spirit.blade','shock.chain','Spirit projectiles cut through enemies faster and get longer. Every 0.15 s of Spirit cooldown reduction adds +1 damage multiplier and +1 hit. Damage ×3.'],
-['crazed','Crazed Spray','光弾乱射','E','E','ebolt.charged','spirit.familiar','Energy Bolts split into 4 and fire in all directions, then keep moving forward. Damage ×10, number ×3, duration +30%.'],
-['terra','Terra Current','テラ電流','D','E','ray.emb','shock.super','Arcane Rays reach wider and switch direction every 0.5 s; +1 damage multiplier per second of duration. Damage ×4, cooldown −50%.'],
-['warclimate','War Climate','戦争気候','E','E','meteor.shower','blizzard.star','Meteor cooldown shrinks with the number of Meteors, which spawn at the same interval; each Meteor also cuts 0–80% cooldown. Damage ×4.'],
-['demon','Demon Equation','デーモンの方程式','E','E','fireball.bigbang','ebolt.flare','Fireballs launch in several directions at once; Big Bang no longer applies. Damage ×6.66, piercing +2, number ×4, cooldown ×3.3.'],
-['frenzy','Frenzy','フレンジー','E','E','flash.nails','bolt.faw','Flash Shock spawns faster and farther. Cast stacks start at 3 and reset at 7; each cooldown step from 5 s to 0.5 s adds a stack. Damage ×7, cooldown −50%.'],
-['ghastly','Ghastly Rampage','百鬼夜行','D','E','fireball.const','satellite.wisp','Fireballs pierce everything and wander randomly, exploding with ×3 power when they vanish; damage grows with duration and each piercing point adds ×3. Damage ×4, cooldown −33%.'],
-['reaction','Reaction','反作用','E','B','ebolt.spark','shield.field','Energy Bolts spawn in all directions and explode every 0.5 s, each explosion +20% power. Damage ×9, number −50%.'],
-['vortex','Vortex','ボルテックス','E','E','cyclone.void','satellite.anti','Cyclones spawn near you and orbit, shrinking over time. Damage ×9, duration ×9, cooldown −50%.'],
-['breath','Breath of Fire','火の息','D','E','incin.cerb','ray.reflect','Incineration fires outward in 5 directions instead of sideways, faster and farther. Damage ×6, number +30%.'],
-['etherblaze','Ether Blaze','エーテル放火','E','E','blizzard.blaze','incin.strike','Each Blizzard explosion splits into 2. Damage ×8, size +20%, interval −30%.'],
-['orbital','Orbital Strike','軌道爆撃','E','E','thunder.judg','blizzard.star','Thunderstorms are generated quickly around a fixed spot. Damage ×9, size +30%, cooldown +30%.','Fandom lists Lightning Explosion as the required attribute; the JP wiki (newer) says Judgement.'],
-['neutron','Neutron Generation','中性子発生','E','E','cyclone.orb','satellite.fusion','All Cyclones merge into one that no longer fires projectiles but expands fast and slows down; each Cyclone makes the next 25% bigger. Damage ×10.'],
-['winterstorm','Winter Storm','冬の嵐','D','D','blizzard.subzero','fireball.gas','Blizzard explosions expand. Damage ×8, size +25%, number −25%.'],
-['plasma','Plasma Ray','プラズマ光線','E','E','ray.disint','satellite.fusion','Fixed at 4 permanent rays, +1 ray per 0.6 s of cooldown reduction from 3 s. Size and duration become damage; hits every 0.25 s. +1 damage multiplier per ray.'],
-['lbolts','Lightning Bolts','雷炸裂','E','E','thunder.clap','shock.chain','5 Thunderstorms in a row at random spots; each one raises the next one\'s radius and number by 30%. Damage ×12.'],
-['photon','Photon Explosion','量子爆発','E','E','shield.field','passive:Arcane Effuse','Shields explode instead of recharging; damage and size +33% per Shield and scale with all-magic size. Shield cooldown −70%.','JP name means “Quantum Explosion”.'],
-['inferno','Inferno','インフェルノ','D','E','incin.strike','lava.melt','Incineration fires faster and its max multiplier rises (damage ×30, size ×2). Cooldown −25%.'],
-['lcalib','Lightning Calibration','雷の調律','X','X','ezone.blast','satellite.wisp','Electric Zones orbit you as several projectiles, with no damage interval and higher rotation speed. Damage ×10, size +30%.'],
-['furnace','Furnace','溶鉱炉','E','E','lava.magma','meteor.volcano','Lava Zones keep expanding and deal more damage the longer they last. Damage ×10, duration +30%, cooldown −30%.'],
-['overload','Current Overload','電流暴走','E','E','shock.chain','spirit.familiar','Electric Shocks no longer chain but fire 3–7 times in a row with longer range. Damage ×8.'],
-['flood','Great Flood','大洪水','E','E','tsunami.siren','cyclone.extreme','2 extra Tsunamis on each side, always spawned behind you. Damage ×8, cooldown ×2.'],
-['snowflake','Snowflake Blossom','雪花開花','E','E','frost.iceage','tsunami.pole','Frost Nova explodes 24 times in a row near enemies, −2% damage and size per explosion. Damage ×24, cooldown −30%.'],
-['rulerstorms','Ruler of Storms','嵐の支配者','E','E','cyclone.extreme','bolt.faw','3 Cyclones in a row in several directions; they speed up then slow down. Damage ×10, size +20%, duration −50%.'],
-['overmind','Overmind','オーバーマインド','X',null,'circle.great','passive:Intelligence','Only fusion spells can be cast. Each level of active magic gives ATK amplify +1.5%, size +0.5%, cooldown −0.3%.','Unlocked after clearing the Sewers. Needed for Deus Ex Machina.'],
-['perpetual','Perpetual Engine','無限動力','S',null,'circle.unleash','passive:Intelligence','Magic Circles become permanent; Unleash Mana is halved. Circle effect +1% per 10% of duration and cooldown reduction.','Unlocked after clearing the Sewers.'],
-['creation','Gate of Creation','創造の扉','X',null,'circle.synth','passive:Intelligence','ATK amplify +20% per active fusion. +2 fusion slots, max level +5.','Unlocked after clearing the Sewers.'],
-['origin','Origin Explosion','原点爆発','E','E','ebolt.flare','fireball.const','Energy Bolts spread in all directions and explode right away; damage and number grow with duration. Damage ×12, explosion size +50%, cooldown ×2.'],
-['prism','Prism Spray','プリズム乱射','E','E','ray.reflect','bolt.faw','Rays fire 5 times in a row in random directions instead of opposite; duration becomes damage. Damage ×7, cooldown −25%.'],
-['rift','Great Rift','大亀裂','E','E','frost.quake','meteor.volcano','Every enemy hit is knocked back; damage scales with size. Damage ×10, size +50%, cooldown +50%.'],
-['hyperion','Hyperion','ヒュペリオン','C','E','satellite.fusion','meteor.asteroid','Adds a second merged Satellite on the opposite side (20% weaker) that freezes enemies on first hit. Damage +50%, rotation +50%.'],
-['avatar','Avatar','アバター','E','B','bolt.dopp','spirit.missile','3 more mirages fire Magic Bolts (1 at a time); each bolt +33% damage. Damage ×9.99, cooldown −33%.',null,{dem:'Deus Ex Machina tier depends on the Lv4 attribute: Magic Arrow D, Fireworks B, Fission E.'}],
-['heartl','Heart of Lightning','雷の心臓','E','E','shock.chain','ebolt.charged','Each chain splits the shock in 2 (−20% damage and size); chains faster. Damage ×6.'],
-['impact','Great Impact','大衝突','B','E','meteor.asteroid','blizzard.star','Meteors fall 3 times in a row, the first one +50% power. Damage ×12, cooldown −30%, size −30%.'],
-['frozenheart','Frozen Heart','氷の心臓','E','E','ezone.aura','frost.iceage','Electric Zone briefly freezes enemies; each activation +1 damage and size multiplier, resetting after 4. Damage ×20.'],
-['meissner','Meissner Effect','マイスナー効果','D','E','ezone.emp','shock.super','When EMP stuns, the target is knocked back and takes ×10 extra damage. Size +100%, ATK amplify +25%.'],
-['bombard','Energy Bombardment','エネルギー飽和','B','B','ray.disint','flash.ragnarok','Many rays fire at once in random directions and stop rotating. Damage ×20, size ×5, duration −75%.','JP name means “Energy Saturation”.'],
-['supercyc','Super Cyclone','スーパー台風','D','E','cyclone.extreme','ezone.aura','All Cyclones merge into one that follows you; damage grows the longer it lasts; cooldown starts when it ends. Duration +100%, cooldown +100%.','JP name means “Super Typhoon”.'],
-['teleport','Teleport','テレポート','E','E','cloak.warp','passive:Concentration','Cloaking casts 7 times in a row, teleporting randomly, then returns you; casts and damage scale with duration. Damage ×3, cooldown −60%.'],
-['flamestorm','Flame Storm','炎の嵐','B','S','meteor.volcano','incin.cerb','Craters no longer deal damage. Meteors fall in lines from you in 5 directions; at 33/66/99% one more direction and +5 damage multiplier. Damage ×10.'],
-['pyro','Pyrotechnics','花火','A','S','bolt.fireworks','ebolt.flare','Magic Bolts explode at random spots; explosions expand for ×1–9 power. Damage ×5, size +50%.','JP name means “Fireworks”.',{std:'Tier depends on the Lv7 attribute: Chain Casting E, Fire at Will E, Doppelganger A.',dem:'Deus Ex Machina tier depends on the Lv7 attribute: Chain Casting D, Fire at Will E, Doppelganger S.'}],
-['manaspear','Mana Spear','魔力の槍','E','E','spirit.missile','flash.wipeout','Spirit goes back to its default cooldown and launch interval; projectile speed and range hugely increased. Damage ×10, size +200%, cooldown ×2.'],
-['gate','Gate','ゲート','A','A','flash.ragnarok','spirit.missile','Flash Shock size bonus becomes damage. Damage ×12, number ×6, cooldown −50%.'],
-['magfield','Magnetic Field','磁場','D','E','satellite.anti','ezone.blast','Anti-Gravity rotation bonus fixed at ×2. Damage ×7, size +100%.'],
-['blackdeath','Black Death','黒死病','D','E','fireball.gas','bolt.faw','Fireballs explode instantly at random spots, hitting 4 times; damage scales with size; piercing becomes 50% count. Damage ×20, size +100%, cooldown ×2.'],
-['lbreath','Lightning Breath','雷の息吹','D','E','shock.super','incin.strike','Electric Shocks fire 3 at a time in front of you. Damage ×7, number ×2, cooldown +50%.'],
-['phoenix','Phoenix','不死鳥','B','A','tsunami.eruption','blizzard.blaze','Tsunami spawns behind you and leaves flames along its path. Damage ×24, cooldown −30%, number −50%, +1 revive.'],
-['brandish','Brandish','ブランディッシュ','B','E','flash.wipeout','spirit.blade','Flash Shock fires 7 times in a row in all directions (+1 per cooldown step from 5 s to 0.5 s) and only the core deals damage. Cooldown −50%.'],
-['blackhole','Black Hole','ブラックホール','C','E','cyclone.void','satellite.fusion','Cyclones merge into one that staggers enemies; cooldown starts after it ends; duration bonus ×3 to damage, +3 multiplier per Cyclone. Damage ×8.'],
-['genesis','Genesis','ジェネシス','D','E','blizzard.star','fireball.const','Blizzard cooldown shrinks with its number and the spawn interval equals the cooldown. Damage ×30, cooldown −30%.'],
-['astrape','Astrape','アストラぺ','C','E','thunder.judg','meteor.asteroid','Each explosion releases a shockwave dealing half damage and stunning nearby enemies. Damage ×7, size +25%, cooldown +25%.'],
-['supernova','Supernova','超新星','E','E','spirit.familiar','ebolt.flare','All Spirit projectiles fire at once. Damage ×24, size +100%, launches −75%, cooldown ×2.'],
-['blaster','Blaster','ブラスター','C','C','bolt.arrow','flash.wipeout','Every 6th Magic Bolt has ×7 power. Damage ×5, size +50%.',null,{dem:'Deus Ex Machina tier depends on the Lv7 attribute: Chain Casting E, Fire at Will E, Doppelganger C.'}],
-['hellfire','Hellfire','ヘルファイア','S','B','incin.pyro','blizzard.blaze','Incineration spawns twice and its flames explode 2–3 times in a row. Damage ×12, size +100%, cooldown +50%.'],
-['agesun','Age of the Sun','太陽の時代','E','E','lava.crater','satellite.fusion','Lava Zones spawn in all directions at once and move; each second of duration gives ×3 damage multiplier. Damage ×15, cooldown −30%.'],
-['destroyer','Destroyer','デストロイヤー','X','E','ezone.blast','shield.field','Electric Zone gets a 7 s cooldown and 3 s duration. Damage ×99, size +99%, HP regen −0.1%.'],
-['genocide','Genocide','ジェノサイド','E','B','ray.disint','spirit.familiar','Rays merge into one that spins faster; size bonus becomes damage; +4 multiplier per ray. Duration −33%, cooldown +33%.'],
-['exidium','Exidium','エクシディウム','D','B','flash.wipeout','armageddon.rapture','Flash Shock core gets bigger. Damage ×7, size +100%, cooldown −25%.'],
-['dem','Deus Ex Machina','デウス・エクス・マキナ','B',null,'fusion:overmind','passive:All passives','No more fusions after this. Max level +10. Each level of active magic: +0.0125 damage multiplier and −0.125% cooldown for all magic.','Only as your 3rd fusion, on top of Overmind. Unlocked after clearing the Academy. See the Deus Ex Machina tier list.'],
-['glacium','Glacium','グレイシウム','E','D','tsunami.pole','frost.iceage',null,'Newer than the Fandom wiki: no English description yet.'],
-['soulblade','Soul Blade','ソウルブレード','D','E','satellite.wisp','spirit.blade',null,'Newer than the Fandom wiki: no English description yet.'],
-['discharge','Discharge','ディスチャージ','A','C','shock.output','thunder.lexp',null,'Newer than the Fandom wiki: no English description yet.']
+['empyrean','Empyrean Wrath','E','E','thunder.lexp','meteor.shower','Thunderstorm explosions cover a wider area but no longer expand. Damage ×5, number ×3.',''],
+['telesword','Telekinetic Sword','E','E','spirit.blade','shock.chain','Spirit projectiles cut through enemies faster and get longer. Every 0.15 s of Spirit cooldown reduction adds +1 damage multiplier and +1 hit. Damage ×3.',''],
+['crazed','Crazed Spray','E','E','ebolt.charged','spirit.familiar','Energy Bolts split into 4 and fire in all directions, then keep moving forward. Damage ×10, number ×3, duration +30%.',''],
+['terra','Terra Current','D','E','ray.emb','shock.super','Arcane Rays reach wider and switch direction every 0.5 s; +1 damage multiplier per second of duration. Damage ×4, cooldown −50%.',''],
+['warclimate','War Climate','E','E','meteor.shower','blizzard.star','Meteor cooldown shrinks with the number of Meteors, which spawn at the same interval; each Meteor also cuts 0–80% cooldown. Damage ×4.',''],
+['demon','Demon Equation','E','E','fireball.bigbang','ebolt.flare','Fireballs launch in several directions at once; Big Bang no longer applies. Damage ×6.66, piercing +2, number ×4, cooldown ×3.3.',''],
+['frenzy','Frenzy','E','E','flash.nails','bolt.faw','Flash Shock spawns faster and farther. Cast stacks start at 3 and reset at 7; each cooldown step from 5 s to 0.5 s adds a stack. Damage ×7, cooldown −50%.',''],
+['ghastly','Ghastly Rampage','D','E','fireball.const','satellite.wisp','Fireballs pierce everything and wander randomly, exploding with ×3 power when they vanish; damage grows with duration and each piercing point adds ×3. Damage ×4, cooldown −33%.',''],
+['reaction','Reaction','E','B','ebolt.spark','shield.field','Energy Bolts spawn in all directions and explode every 0.5 s, each explosion +20% power. Damage ×9, number −50%.',''],
+['vortex','Vortex','E','E','cyclone.void','satellite.anti','Cyclones spawn near you and orbit, shrinking over time. Damage ×9, duration ×9, cooldown −50%.',''],
+['breath','Breath of Fire','D','E','incin.cerb','ray.reflect','Incineration fires outward in 5 directions instead of sideways, faster and farther. Damage ×6, number +30%.',''],
+['etherblaze','Ether Blaze','E','E','blizzard.blaze','incin.strike','Each Blizzard explosion splits into 2. Damage ×8, size +20%, interval −30%.',''],
+['orbital','Orbital Strike','E','E','thunder.judg','blizzard.star','Thunderstorms are generated quickly around a fixed spot. Damage ×9, size +30%, cooldown +30%.','The Fandom wiki (v0.956) lists Lightning Explosion instead of Judgment.'],
+['neutron','Neutron Generation','E','E','cyclone.orb','satellite.fusion','All Cyclones merge into one that no longer fires projectiles but expands fast and slows down; each Cyclone makes the next 25% bigger. Damage ×10.',''],
+['winterstorm','Winter Storm','D','D','blizzard.subzero','fireball.gas','Blizzard explosions expand. Damage ×8, size +25%, number −25%.',''],
+['plasma','Plasma Ray','E','E','ray.disint','satellite.fusion','Fixed at 4 permanent rays, +1 ray per 0.6 s of cooldown reduction from 3 s. Size and duration become damage; hits every 0.25 s. +1 damage multiplier per ray.',''],
+['lbolts','Lightning Bolts','E','E','thunder.clap','shock.chain','5 Thunderstorms in a row at random spots; each one raises the next one\'s radius and number by 30%. Damage ×12.',''],
+['photon','Photon Explosion','E','E','shield.field','passive:Arcane Effuse','Shields explode instead of recharging; damage and size +33% per Shield and scale with all-magic size. Shield cooldown −70%.',''],
+['inferno','Inferno','D','E','incin.strike','lava.melt','Incineration fires faster and its max multiplier rises (damage ×30, size ×2). Cooldown −25%.',''],
+['lcalib','Lightning Calibration','X','X','ezone.blast','satellite.wisp','Electric Zones orbit you as several projectiles, with no damage interval and higher rotation speed. Damage ×10, size +30%.',''],
+['furnace','Furnace','E','E','lava.magma','meteor.volcano','Lava Zones keep expanding and deal more damage the longer they last. Damage ×10, duration +30%, cooldown −30%.',''],
+['overload','Current Overload','E','E','shock.chain','spirit.familiar','Electric Shocks no longer chain but fire 3–7 times in a row with longer range. Damage ×8.',''],
+['flood','Great Flood','E','E','tsunami.siren','cyclone.extreme','2 extra Tsunamis on each side, always spawned behind you. Damage ×8, cooldown ×2.',''],
+['snowflake','Snowflake Blossom','E','E','frost.iceage','tsunami.pole','Frost Nova explodes 24 times in a row near enemies, −2% damage and size per explosion. Damage ×24, cooldown −30%.',''],
+['rulerstorms','Ruler of Storms','E','E','cyclone.extreme','bolt.faw','3 Cyclones in a row in several directions; they speed up then slow down. Damage ×10, size +20%, duration −50%.',''],
+['overmind','Overmind','X',null,'circle.great','passive:Intelligence','Only fusion spells can be cast. Each level of active magic gives ATK amplify +1.5%, size +0.5%, cooldown −0.3%.','Unlocked after clearing the Sewers. Needed for Deus Ex Machina.'],
+['perpetual','Perpetual Engine','S',null,'circle.unleash','passive:Intelligence','Magic Circles become permanent; Unleash Mana is halved. Circle effect +1% per 10% of duration and cooldown reduction.','Unlocked after clearing the Sewers.'],
+['creation','Gate of Creation','X',null,'circle.synth','passive:Intelligence','ATK amplify +20% per active fusion. +2 fusion slots, max level +5.','Unlocked after clearing the Sewers.'],
+['origin','Origin Explosion','E','E','ebolt.flare','fireball.const','Energy Bolts spread in all directions and explode right away; damage and number grow with duration. Damage ×12, explosion size +50%, cooldown ×2.',''],
+['prism','Prism Spray','E','E','ray.reflect','bolt.faw','Rays fire 5 times in a row in random directions instead of opposite; duration becomes damage. Damage ×7, cooldown −25%.',''],
+['rift','Great Rift','E','E','frost.quake','meteor.volcano','Every enemy hit is knocked back; damage scales with size. Damage ×10, size +50%, cooldown +50%.',''],
+['hyperion','Hyperion','C','E','satellite.fusion','meteor.asteroid','Adds a second merged Satellite on the opposite side (20% weaker) that freezes enemies on first hit. Damage +50%, rotation +50%.',''],
+['avatar','Avatar','E','B','bolt.dopp','spirit.missile','3 more mirages fire Magic Bolts (1 at a time); each bolt +33% damage. Damage ×9.99, cooldown −33%.','',{"dem":"Deus Ex Machina tier depends on the Lv4 attribute: Magic Arrow D, Fireworks B, Fission E."}],
+['heartl','Heart of Lightning','E','E','shock.chain','ebolt.charged','Each chain splits the shock in 2 (−20% damage and size); chains faster. Damage ×6.',''],
+['impact','Great Impact','B','E','meteor.asteroid','blizzard.star','Meteors fall 3 times in a row, the first one +50% power. Damage ×12, cooldown −30%, size −30%.',''],
+['frozenheart','Frozen Heart','E','E','ezone.aura','frost.iceage','Electric Zone briefly freezes enemies; each activation +1 damage and size multiplier, resetting after 4. Damage ×20.',''],
+['meissner','Meissner Effect','D','E','ezone.emp','shock.super','When EMP stuns, the target is knocked back and takes ×10 extra damage. Size +100%, ATK amplify +25%.',''],
+['bombard','Energy Bombardment','B','B','ray.disint','flash.ragnarok','Many rays fire at once in random directions and stop rotating. Damage ×20, size ×5, duration −75%.',''],
+['supercyc','Super Cyclone','D','E','cyclone.extreme','ezone.aura','All Cyclones merge into one that follows you; damage grows the longer it lasts; cooldown starts when it ends. Duration +100%, cooldown +100%.',''],
+['teleport','Teleport','E','E','cloak.warp','passive:Concentration','Cloaking casts 7 times in a row, teleporting randomly, then returns you; casts and damage scale with duration. Damage ×3, cooldown −60%.',''],
+['flamestorm','Flame Storm','B','S','meteor.volcano','incin.cerb','Craters no longer deal damage. Meteors fall in lines from you in 5 directions; at 33/66/99% one more direction and +5 damage multiplier. Damage ×10.',''],
+['pyro','Pyrotechnics','A','S','bolt.fireworks','ebolt.flare','Magic Bolts explode at random spots; explosions expand for ×1–9 power. Damage ×5, size +50%.','',{"std":"Tier depends on the Lv7 attribute: Chain Casting E, Fire at Will E, Doppelganger A.","dem":"Deus Ex Machina tier depends on the Lv7 attribute: Chain Casting D, Fire at Will E, Doppelganger S."}],
+['manaspear','Mana Spear','E','E','spirit.missile','flash.wipeout','Spirit goes back to its default cooldown and launch interval; projectile speed and range hugely increased. Damage ×10, size +200%, cooldown ×2.',''],
+['gate','Gate','A','A','flash.ragnarok','spirit.missile','Flash Shock size bonus becomes damage. Damage ×12, number ×6, cooldown −50%.',''],
+['magfield','Magnetic Field','D','E','satellite.anti','ezone.blast','Anti-Gravity rotation bonus fixed at ×2. Damage ×7, size +100%.',''],
+['blackdeath','Black Death','D','E','fireball.gas','bolt.faw','Fireballs explode instantly at random spots, hitting 4 times; damage scales with size; piercing becomes 50% count. Damage ×20, size +100%, cooldown ×2.',''],
+['lbreath','Lightning Breath','D','E','shock.super','incin.strike','Electric Shocks fire 3 at a time in front of you. Damage ×7, number ×2, cooldown +50%.',''],
+['phoenix','Phoenix','B','A','tsunami.eruption','blizzard.blaze','Tsunami spawns behind you and leaves flames along its path. Damage ×24, cooldown −30%, number −50%, +1 revive.',''],
+['brandish','Brandish','B','E','flash.wipeout','spirit.blade','Flash Shock fires 7 times in a row in all directions (+1 per cooldown step from 5 s to 0.5 s) and only the core deals damage. Cooldown −50%.',''],
+['blackhole','Black Hole','C','E','cyclone.void','satellite.fusion','Cyclones merge into one that staggers enemies; cooldown starts after it ends; duration bonus ×3 to damage, +3 multiplier per Cyclone. Damage ×8.',''],
+['genesis','Genesis','D','E','blizzard.star','fireball.const','Blizzard cooldown shrinks with its number and the spawn interval equals the cooldown. Damage ×30, cooldown −30%.',''],
+['astrape','Astrape','C','E','thunder.judg','meteor.asteroid','Each explosion releases a shockwave dealing half damage and stunning nearby enemies. Damage ×7, size +25%, cooldown +25%.',''],
+['supernova','Supernova','E','E','spirit.familiar','ebolt.flare','All Spirit projectiles fire at once. Damage ×24, size +100%, launches −75%, cooldown ×2.',''],
+['blaster','Blaster','C','C','bolt.arrow','flash.wipeout','Every 6th Magic Bolt has ×7 power. Damage ×5, size +50%.','',{"dem":"Deus Ex Machina tier depends on the Lv7 attribute: Chain Casting E, Fire at Will E, Doppelganger C."}],
+['hellfire','Hellfire','S','B','incin.pyro','blizzard.blaze','Incineration spawns twice and its flames explode 2–3 times in a row. Damage ×12, size +100%, cooldown +50%.',''],
+['agesun','Age of the Sun','E','E','lava.crater','satellite.fusion','Lava Zones spawn in all directions at once and move; each second of duration gives ×3 damage multiplier. Damage ×15, cooldown −30%.',''],
+['destroyer','Destroyer','X','E','ezone.blast','shield.field','Electric Zone gets a 7 s cooldown and 3 s duration. Damage ×99, size +99%, HP regen −0.1%.',''],
+['genocide','Genocide','E','B','ray.disint','spirit.familiar','Rays merge into one that spins faster; size bonus becomes damage; +4 multiplier per ray. Duration −33%, cooldown +33%.',''],
+['exidium','Exidium','D','B','flash.wipeout','armageddon.rapture','Flash Shock core gets bigger. Damage ×7, size +100%, cooldown −25%.',''],
+['dem','Deus Ex Machina','B',null,'fusion:overmind','passive:All passives','No more fusions after this. Max level +10. Each level of active magic: +0.0125 damage multiplier and −0.125% cooldown for all magic.','Only as your 3rd fusion, on top of Overmind. Unlocked after clearing the Academy. See the Deus Ex Machina tier list.'],
+['glacium','Glacium','E','D','tsunami.pole','frost.iceage',null,'Newer than the Fandom wiki: no English description yet.'],
+['soulblade','Soul Blade','D','E','satellite.wisp','spirit.blade',null,'Newer than the Fandom wiki: no English description yet.'],
+['discharge','Discharge','A','C','shock.output','thunder.lexp',null,'Newer than the Fandom wiki: no English description yet.']
 ];
-// Ultimates: [EN, JP, tier, DEM tier, fusion id, description (translated from JP wiki)]
+// Ultimas: [name, tier, Deus Ex Machina tier, fusion id, description]
 const ULTS=[
-['Stormbringer','ストームブリンガー','D','D','empyrean','Thunderstorm count +20%, spawned 6 at a time. Thunderstorm damage ×3.'],
-['Aura Blade','オーラブレード','C','C','telesword','Each Spirit projectile has an 8% chance to deal ×5 damage at ×4 size. Spirit damage ×1.5.'],
-['Ground Zero','グラウンドゼロ','E','B','warclimate','Meteor final size and hitbox greatly increased; random cooldown removed. Meteor damage ×9.'],
-['Nemesis','ネメシス','D','D','demon','Each enemy a Fireball pierces gives it +25% damage and +15% size. Fireball damage ×2.5, piercing +1.'],
-['Berserk','ベルセルク','D','B','frenzy','Flash Shock cast stacks stay at the max of 7. At 100% crit rate, casts increase up to ×3.5. Flash Shock damage ×3.5.'],
-['Darkness','ダークネス','D','D','vortex','Every 2nd Cyclone cast merges into one with ×4 power; wider spawn radius. Cyclone damage ×4.25 (×3.5 in the DEM table).'],
-['Omega','オメガ','D','D','neutron','When a Cyclone ends it explodes for ×3 damage. Cyclone damage ×4.'],
-['Quantum Laser','クアンタムレーザー','D','D','plasma','Arcane Ray rotation speed, size and hit radius greatly increased. Arcane Ray damage ×4.'],
-['Death Storm','デスストーム','D','D','lbolts','Thunderstorms spawn clustered, 25% faster, 3 more in each chain; per-chain count growth drops from 30% to 20%. Thunderstorm damage ×2.5.'],
-['Inquisitor','インクィジター','D','C','inferno','Incineration starts at 50% of its ramp-up and its size multiplier is higher; spawns ×3 faster in a wider arc. Incineration damage ×3 (×2.5 in the DEM table).'],
-['Mega Tsunami','メガツナミ','D','D','flood','Tsunamis form as one long wave that crosses the whole field. Tsunami damage ×7.5 (×4.25 in the DEM table).'],
-['Zero Nova','ゼロノヴァ','D','D','snowflake','Power loss per explosion halved; explosions go from 24 to 40 and come faster. Frost Nova damage ×1.5.'],
-['Blitz','ブリッツ','E','E','origin','Each time an Energy Bolt splits (1→2→4→8 with Magitech Module), its power drops 30%. Energy Bolt damage ×2.'],
-['Abaddon','アバドン','D','C','hyperion','Satellites merge into one that also damages every enemy each second (not boosted by Core Energy or Circular Sawblade). Size ×3, Satellite damage ×3.3.'],
-['Equilibrium','イクイリブリウム','D','D','avatar','3 more Doppelganger mirages that stay farther away and chase faster. Magic Bolt cooldown +25%, damage ×4.'],
-['Arc','アーク','C','C','heartl','Electric Shock size and hit area greatly increased; chaining no longer splits it and it keeps full power. Damage ×9 (×7.5 in the DEM table).'],
-['Giant Impact','ジャイアントインパクト','A','A','impact','Meteors merge into one, much bigger; its explosion briefly stuns every enemy on the field. Meteor damage ×4.'],
-['Lockdown','ロックダウン','D','E','meissner','Electric Zone fires as a growing wave every 3 s (affected by cooldown reduction). Damage ×6, damage interval ×3.'],
-['Hallucination','ハルシネーション','B','B','teleport','Each Cloaking explosion is followed by 4 afterimage explosions, each 20% weaker.'],
-['Ascension','アセンション','S','S','gate','Flash Shock cooldown becomes equal to its spawn interval and shrinks with its count. Flash Shock damage ×2.'],
-['Core','コア','E','E','magfield','Satellite size, rotation speed and orbit radius greatly increased. Satellite damage ×5.'],
-['Cosmos','コスモス','S','S','genesis','50 more Blizzards per cast (cooldown scales up accordingly), falling 33% faster. Blizzard damage ×3.'],
-['Overload','オーバーロード','E','E','agesun','Lava Zone cooldown starts 2 s after it spawns. Lava Zone damage ×1.5.'],
-['Terminator','ターミネーター','E','E','destroyer','Electric Zone cooldown 7 s → 2 s, duration 3 s → 2 s, bigger. Damage ×5 (×3.25 in the DEM table).']
+['Stormbringer','D','D','empyrean','Thunderstorm count +20%, spawned 6 at a time. Thunderstorm damage ×3.'],
+['Aura Blade','C','C','telesword','Each Spirit projectile has an 8% chance to deal ×5 damage at ×4 size. Spirit damage ×1.5.'],
+['Ground Zero','E','B','warclimate','Meteor final size and hitbox greatly increased; random cooldown removed. Meteor damage ×9.'],
+['Nemesis','D','D','demon','Each enemy a Fireball pierces gives it +25% damage and +15% size. Fireball damage ×2.5, piercing +1.'],
+['Berserk','D','B','frenzy','Flash Shock cast stacks stay at the max of 7. At 100% crit rate, casts increase up to ×3.5. Flash Shock damage ×3.5.'],
+['Darkness','D','D','vortex','Every 2nd Cyclone cast merges into one with ×4 power; wider spawn radius. Cyclone damage ×4.25 (×3.5 in the DEM table).'],
+['Omega','D','D','neutron','When a Cyclone ends it explodes for ×3 damage. Cyclone damage ×4.'],
+['Quantum Laser','D','D','plasma','Arcane Ray rotation speed, size and hit radius greatly increased. Arcane Ray damage ×4.'],
+['Death Storm','D','D','lbolts','Thunderstorms spawn clustered, 25% faster, 3 more in each chain; per-chain count growth drops from 30% to 20%. Thunderstorm damage ×2.5.'],
+['Inquisitor','D','C','inferno','Incineration starts at 50% of its ramp-up and its size multiplier is higher; spawns ×3 faster in a wider arc. Incineration damage ×3 (×2.5 in the DEM table).'],
+['Mega Tsunami','D','D','flood','Tsunamis form as one long wave that crosses the whole field. Tsunami damage ×7.5 (×4.25 in the DEM table).'],
+['Zero Nova','D','D','snowflake','Power loss per explosion halved; explosions go from 24 to 40 and come faster. Frost Nova damage ×1.5.'],
+['Blitz','E','E','origin','Each time an Energy Bolt splits (1→2→4→8 with Magitech Module), its power drops 30%. Energy Bolt damage ×2.'],
+['Abaddon','D','C','hyperion','Satellites merge into one that also damages every enemy each second (not boosted by Core Energy or Circular Sawblade). Size ×3, Satellite damage ×3.3.'],
+['Equilibrium','D','D','avatar','3 more Doppelganger mirages that stay farther away and chase faster. Magic Bolt cooldown +25%, damage ×4.'],
+['Arc','C','C','heartl','Electric Shock size and hit area greatly increased; chaining no longer splits it and it keeps full power. Damage ×9 (×7.5 in the DEM table).'],
+['Giant Impact','A','A','impact','Meteors merge into one, much bigger; its explosion briefly stuns every enemy on the field. Meteor damage ×4.'],
+['Lockdown','D','E','meissner','Electric Zone fires as a growing wave every 3 s (affected by cooldown reduction). Damage ×6, damage interval ×3.'],
+['Hallucination','B','B','teleport','Each Cloaking explosion is followed by 4 afterimage explosions, each 20% weaker.'],
+['Ascension','S','S','gate','Flash Shock cooldown becomes equal to its spawn interval and shrinks with its count. Flash Shock damage ×2.'],
+['Core','E','E','magfield','Satellite size, rotation speed and orbit radius greatly increased. Satellite damage ×5.'],
+['Cosmos','S','S','genesis','50 more Blizzards per cast (cooldown scales up accordingly), falling 33% faster. Blizzard damage ×3.'],
+['Overload','E','E','agesun','Lava Zone cooldown starts 2 s after it spawns. Lava Zone damage ×1.5.'],
+['Terminator','E','E','destroyer','Electric Zone cooldown 7 s → 2 s, duration 3 s → 2 s, bigger. Damage ×5 (×3.25 in the DEM table).']
 ];
 const PASSIVES={
-regular:[['Advanced Magic','上級魔法',3,'All magic damage +15%'],['Intelligence','知能',5,'ATK +10%'],['Fast Casting','高速発動',3,'Cooldown −5%'],['Vitality','生命力',5,'Max HP +20%, Life Orb healing +10%'],['Haste','加速',2,'Movement speed +10%'],['Arcane Effuse','魔力発散',3,'Magic size +5%'],['Concentration','集中',3,'Magic duration +10%'],['Snipe','狙撃',3,'Crit rate +5%'],['Explorer','探索',3,'Pickup range +33%'],['Rupture','破裂',3,'Crit multiplier +15%']],
-special:[['Lord of Fire','火の支配者','E','Fireball, Meteor, Incineration, Lava Zone damage +25%'],['Stormy Clouds','雷雲','E','Thunderstorm, Electric Shock, Electric Zone, Flash Shock damage +25%'],["Nature's Wrath",'自然の怒り','E','Cyclone, Blizzard, Tsunami, Frost Nova damage +25%'],['Energy Engineering','エネルギー工学','E','Energy Bolt, Arcane Ray, Spirit, Satellite damage +25%'],['Arcana','アルカナ','E','ATK +15%'],['Guardian Angel','守護天使','S','+1 revive, max HP +30%'],['Silent Casting','無言詠唱','S','All cooldowns −7%'],['War Magic','戦争魔法','E','ATK +8%, all magic size +8%'],['Timekeeper','タイムキーパー','S','Rune duration and all magic duration +12%'],['Pioneer','開拓者','S','Movement speed +3%, pickup radius +50%'],['Smite','強打','E','Crit multiplier +30%'],['Seal','封印','S','All enemies −8% movement speed'],['Curse','呪い','D','All enemies −6% max HP'],['Chakra','チャクラ','E','All magic damage +20%'],['Mana Factory','マナ工場','S','Mana Orb drop rate +20%'],['Doctor','博士','D','Max level +3'],['Blood Magic','血魔法','E','ATK amplify +10%, HP regen −0.25%/s'],['Adrenaline','アドレナリン','S','ATK, crit rate and movement speed +5%'],['Juggernaut','ジャガーノート','A','ATK +10%, damage taken −15%'],['Priest','プリースト','C','All enemies −3% max HP, HP regen +0.3%/s'],['Eldritch','エルドリッチ','D','Elite monsters −10% max HP'],['Noblesse','ノーブレス','S','Creates a regular treasure chest nearby'],['Taoist','道士','B','+1 level to every growth passive'],['Florist','フローリスト','S','Merchant items 7% cheaper'],['Enchant','エンチャント','C','Pick an attack spell: +50% damage and one stat (see each spell)']],
-growth:[['Intelligence','知能',8,'ATK +3%'],['Fast Casting','高速詠唱',8,'Cooldown −1%'],['Vitality','生命力',8,'Max HP +10%'],['Haste','加速',8,'Movement speed +2%'],['Arcane Effuse','魔力発散',8,'Magic size +2%'],['Concentration','集中',8,'Magic duration +3%'],['Snipe','狙撃',8,'Crit rate +1%'],['Explorer','探索',8,'Pickup range +10%'],['Rupture','破裂',8,'Crit multiplier +5%']]};
+regular:[["Advanced Magic",3,"All magic damage +15%"],["Intelligence",5,"ATK +10%"],["Fast Casting",3,"Cooldown −5%"],["Vitality",5,"Max HP +20%, Life Orb healing +10%"],["Haste",2,"Movement speed +10%"],["Arcane Effuse",3,"Magic size +5%"],["Concentration",3,"Magic duration +10%"],["Snipe",3,"Crit rate +5%"],["Explorer",3,"Pickup range +33%"],["Rupture",3,"Crit multiplier +15%"]],
+special:[["Lord of Fire","E","Fireball, Meteor, Incineration, Lava Zone damage +25%"],["Stormy Clouds","E","Thunderstorm, Electric Shock, Electric Zone, Flash Shock damage +25%"],["Nature's Wrath","E","Cyclone, Blizzard, Tsunami, Frost Nova damage +25%"],["Energy Engineering","E","Energy Bolt, Arcane Ray, Spirit, Satellite damage +25%"],["Arcana","E","ATK +15%"],["Guardian Angel","S","+1 revive, max HP +30%"],["Silent Casting","S","All cooldowns −7%"],["War Magic","E","ATK +8%, all magic size +8%"],["Timekeeper","S","Rune duration and all magic duration +12%"],["Pioneer","S","Movement speed +3%, pickup radius +50%"],["Smite","E","Crit multiplier +30%"],["Seal","S","All enemies −8% movement speed"],["Curse","D","All enemies −6% max HP"],["Chakra","E","All magic damage +20%"],["Mana Factory","S","Mana Orb drop rate +20%"],["Doctor","D","Max level +3"],["Blood Magic","E","ATK amplify +10%, HP regen −0.25%/s"],["Adrenaline","S","ATK, crit rate and movement speed +5%"],["Juggernaut","A","ATK +10%, damage taken −15%"],["Priest","C","All enemies −3% max HP, HP regen +0.3%/s"],["Eldritch","D","Elite monsters −10% max HP"],["Noblesse","S","Creates a regular treasure chest nearby"],["Taoist","B","+1 level to every growth passive"],["Florist","S","Merchant items 7% cheaper"],["Enchant","C","Pick an attack spell: +50% damage and one stat (see each spell)"]],
+growth:[["Intelligence",8,"ATK +3%"],["Fast Casting",8,"Cooldown −1%"],["Vitality",8,"Max HP +10%"],["Haste",8,"Movement speed +2%"],["Arcane Effuse",8,"Magic size +2%"],["Concentration",8,"Magic duration +3%"],["Snipe",8,"Crit rate +1%"],["Explorer",8,"Pickup range +10%"],["Rupture",8,"Crit multiplier +5%"]]};
 
 // ---------- MODEL ----------
 const ORDER=['S','A','B','C','D','E','X'];
 const rank=t=>t==null?99:ORDER.indexOf(t);
 const best=arr=>arr.filter(t=>t!=null).sort((a,b)=>rank(a)-rank(b))[0]||null;
-const SP={};SPELLS.forEach(s=>{SP[s.id]=s;s.attrs=s.attrs.map(a=>({id:a[0],en:a[1],jp:a[2],tier:a[3],desc:a[4],stage:a[5]||0,alias:a[6]||'',spell:s}));s.A={};s.attrs.forEach(a=>s.A[a.id]=a)});
+const SP={};SPELLS.forEach(s=>{SP[s.id]=s;s.attrs=s.attrs.map(a=>({id:a[0],en:a[1],tier:a[2],desc:a[3],stage:a[4]||0,alias:a[5]||'',spell:s}));s.A={};s.attrs.forEach(a=>s.A[a.id]=a)});
 const FU={};
 const ref=r=>{if(r.startsWith('passive:'))return{passive:r.slice(8)};if(r.startsWith('fusion:'))return{fusion:r.slice(7),spell:SP.circle,attr:null};const[s,a]=r.split('.');return{spell:SP[s],attr:SP[s].A[a]}};
-const FUS=FUSIONS.map(f=>({id:f[0],en:f[1],jp:f[2],tier:f[3],dem:f[4],main:ref(f[5]),sub:ref(f[6]),desc:f[7],note:f[8]||'',var:f[9]||{}}));
+const FUS=FUSIONS.map(f=>({id:f[0],en:f[1],tier:f[2],dem:f[3],main:ref(f[4]),sub:ref(f[5]),desc:f[6],note:f[7]||'',var:f[8]||{}}));
 FUS.forEach(f=>FU[f.id]=f);
-const ULT=ULTS.map(u=>({en:u[0],jp:u[1],tier:u[2],dem:u[3],fusion:FU[u[4]],desc:u[5]}));
+const ULT=ULTS.map(u=>({en:u[0],tier:u[1],dem:u[2],fusion:FU[u[3]],desc:u[4]}));
 ULT.forEach(u=>u.fusion.ult=u);
+// Icons (Fandom wiki art, resized to 64 px WebP). Fusions newer than the wiki have none.
+const NOIMG=new Set(['glacium','soulblade','discharge']);
+const PIMG=new Set(['intelligence','fast-casting','vitality','haste','arcane-effuse','concentration','snipe','explorer','lord-of-fire','stormy-clouds','natures-wrath','energy-engineering','arcana','guardian-angel','silent-casting','war-magic','timekeeper','pioneer','smite','seal','curse','chakra','mana-factory','doctor','blood-magic','adrenaline','juggernaut','priest','eldritch','noblesse','taoist']);
+const slug=n=>n.toLowerCase().replace(/'/g,'').replace(/[^a-z0-9]+/g,'-');
+const img=(src,cls)=>`<img class="ic ${cls||''}" src="${src}" alt="" loading="lazy" width="64" height="64">`;
+const blank=cls=>`<span class="ic ${cls||''} ph" aria-hidden="true"></span>`;
+const sImg=(s,cls)=>img(`img/s-${s.id}.webp`,cls);
+const fImg=(f,cls)=>NOIMG.has(f.id)?blank(cls):img(`img/f-${f.id}.webp`,cls);
+const pImg=(n,cls)=>PIMG.has(slug(n))?img(`img/p-${slug(n)}.webp`,cls):blank(cls);
 
 let mode='std';try{mode=localStorage.getItem('ms-mode')||'std'}catch(e){}
 const T=x=>mode==='dem'&&x.dem!==undefined?x.dem:x.tier;
 const tag=(t,big)=>t==null?`<span class="t N${big?' big':''}" title="Not rated in this list">–</span>`:`<span class="t ${t}${big?' big':''}">${t==='X'?'×':t}</span>`;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const elv=s=>`--el:var(--${s.el})`;
-const spellLink=(s,a)=>`<a href="#/spell/${s.id}">${esc(s.en)}</a>${a?` <span class="note" style="font-style:normal">(${esc(a.en)})</span>`:''}`;
-const refHTML=r=>r.fusion?`<b>${esc(FU[r.fusion].en)}</b>`:r.spell?spellLink(r.spell,r.attr):`<b>${esc(r.passive)}</b> <span class="note" style="font-style:normal">(passive)</span>`;
+const spellLink=(s,a)=>`<a class="lnk" href="#/spell/${s.id}">${sImg(s,'xs')}${esc(s.en)}</a>${a?` <span class="sub">(${esc(a.en)})</span>`:''}`;
+const refHTML=r=>r.fusion?`<b>${esc(FU[r.fusion].en)}</b>`:r.spell?spellLink(r.spell,r.attr):`<span class="lnk">${pImg(r.passive,'xs')}<b>${esc(r.passive)}</b></span> <span class="sub">(passive)</span>`;
 const asMain=s=>FUS.filter(f=>f.main.spell===s);
 const asSub=s=>FUS.filter(f=>f.sub.spell===s);
 function summary(s){const at=best(s.attrs.map(a=>a.tier));const fm=asMain(s);const ft=best(fm.map(T));const ut=best(fm.filter(f=>f.ult).map(f=>T(f.ult)));return{at,ft,ut,fm}}
@@ -304,12 +335,12 @@ function modeSeg(){return `<span class="seg" role="group" aria-label="Tier list"
 let q='';
 function viewSpells(){
   const groups=['arcane','fire','storm','nature','energy','support'];
-  const match=s=>{if(!q)return true;const n=q.toLowerCase();return [s.en,s.jp,...s.attrs.flatMap(a=>[a.en,a.jp,a.alias]),...asMain(s).flatMap(f=>[f.en,f.jp,f.ult?f.ult.en:''])].some(x=>x&&x.toLowerCase().includes(n))};
-  app.innerHTML=`<div class="bar"><label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Spell, attribute, fusion or ultimate (EN / 日本語)" value="${esc(q)}" autocomplete="off"></label><label>Fusion tiers ${modeSeg()}</label></div>
-  <p class="note" style="margin:0">Offered a spell? Open it to see its attributes, the fusions it powers up, and the ultimates behind them. Badges: best <b>attribute</b> · best <b>fusion</b> · best <b>ultimate</b>.</p>
+  const match=s=>{if(!q)return true;const n=q.toLowerCase();return [s.en,...s.attrs.flatMap(a=>[a.en,a.alias]),...asMain(s).flatMap(f=>[f.en,f.ult?f.ult.en:''])].some(x=>x&&x.toLowerCase().includes(n))};
+  app.innerHTML=`<div class="bar"><label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Spell, attribute, fusion or Ultima" value="${esc(q)}" autocomplete="off"></label><label>Fusion tiers ${modeSeg()}</label></div>
+  <p class="note" style="margin:0">Offered a spell? Open it to see its attributes, the fusions it powers up, and the Ultimas behind them. Badges: best <b>attribute</b> · best <b>fusion</b> · best <b>Ultima</b>.</p>
   <div id="list"></div>`;
   const list=document.getElementById('list');
-  const draw=()=>{list.innerHTML=groups.map(g=>{const ss=SPELLS.filter(s=>s.el===g&&match(s));if(!ss.length)return'';return `<h2>${EL[g]}</h2><div class="grid">${ss.map(s=>{const m=summary(s);return `<a class="card" style="${elv(s)}" href="#/spell/${s.id}"><span class="nm">${esc(s.en)}</span><span class="jp">${s.jp}</span><div class="sum"><span>Attr ${tag(m.at)}</span><span>Fusion ${m.fm.length?tag(m.ft):'<span class="note">none</span>'}</span>${m.fm.some(f=>f.ult)?`<span>Ult ${tag(m.ut)}</span>`:''}</div></a>`}).join('')}</div>`}).join('')||'<p class="none">No match.</p>'};
+  const draw=()=>{list.innerHTML=groups.map(g=>{const ss=SPELLS.filter(s=>s.el===g&&match(s));if(!ss.length)return'';return `<h2>${EL[g]}</h2><div class="grid">${ss.map(s=>{const m=summary(s);return `<a class="card" style="${elv(s)}" href="#/spell/${s.id}">${sImg(s,'md')}<span><span class="nm">${esc(s.en)}</span><span class="sum"><span>Attr ${tag(m.at)}</span><span>Fusion ${m.fm.length?tag(m.ft):'<span class="note">none</span>'}</span>${m.fm.some(f=>f.ult)?`<span>Ultima ${tag(m.ut)}</span>`:''}</span></span></a>`}).join('')}</div>`}).join('')||'<p class="none">No match.</p>'};
   draw();
   const qi=document.getElementById('q');qi.addEventListener('input',()=>{q=qi.value.trim();draw()});
 }
@@ -317,73 +348,72 @@ function verdict(s){
   const m=summary(s);const ba=s.attrs.filter(a=>a.tier===m.at).map(a=>a.en).join(' / ');
   const top=m.fm.filter(f=>T(f)===m.ft);const topU=m.fm.filter(f=>f.ult&&T(f.ult)===m.ut);
   let out=`Best attribute: ${tag(m.at)} <b>${esc(ba)}</b>. `;
-  if(!m.fm.length)out+='It never gets upgraded by a fusion (it can only be used as an ingredient).';
-  else{out+=`Best fusion: ${tag(m.ft)} ${top.map(f=>`<b>${esc(f.en)}</b> (with ${f.sub.spell?esc(f.sub.spell.en):esc(f.sub.passive||'Overmind')})`).join(', ')}.`;
-    if(topU.length&&rank(m.ut)<rank(m.ft))out+=` Its ultimate is better: ${tag(m.ut)} <b>${esc(topU[0].ult.en)}</b>.`;
-    else if(topU.length)out+=` Best ultimate: ${tag(m.ut)} <b>${esc(topU.map(f=>f.ult.en).join(', '))}</b>.`;
+  if(!m.fm.length)out+='No fusion upgrades it (it can only be used as an ingredient).';
+  else{out+=`Best fusion: ${tag(m.ft)} ${top.map(f=>`<b>${esc(f.en)}</b> (with ${f.sub.spell?esc(f.sub.spell.en):esc(f.sub.passive)})`).join(', ')}.`;
+    if(topU.length&&rank(m.ut)<rank(m.ft))out+=` Its Ultima is better: ${tag(m.ut)} <b>${esc(topU[0].ult.en)}</b>.`;
+    else if(topU.length)out+=` Best Ultima: ${tag(m.ut)} <b>${esc(topU.map(f=>f.ult.en).join(', '))}</b>.`;
     if(rank(m.at)<rank(m.ft))out+=' → The attribute alone beats its fusions: pick it for the attribute.';
     else if(rank(m.ft)<rank(m.at))out+=' → Worth taking mainly for the fusion.';}
   return out;
 }
 function fusionLi(f,role){
   const other=role==='main'?f.sub:f.main;const v=mode==='dem'?f.var.dem:f.var.std;
-  return `<li><div class="row">${tag(T(f))}<div class="body"><div class="ttl">${esc(f.en)}<span class="jp">${f.jp}</span></div>
-  <div class="fx">${role==='main'?'+ ':'Upgrades '}${refHTML(other)}${role==='sub'?` <span class="note" style="font-style:normal">— this spell is consumed</span>`:''}</div>
+  return `<li><div class="row">${fImg(f,'sm')}<div class="body"><div class="ttl">${tag(T(f))} ${esc(f.en)}</div>
+  <div class="fx">${role==='main'?'+ ':'Upgrades '}${refHTML(other)}${role==='sub'?` <span class="sub">— this spell is consumed</span>`:''}</div>
   ${f.desc?`<div class="desc">${esc(f.desc)}</div>`:''}${v?`<div class="note">${esc(v)}</div>`:''}${f.note?`<div class="note">${esc(f.note)}</div>`:''}
-  ${f.ult&&role==='main'?`<div class="ult"><span class="lbl">Ultimate</span>${tag(T(f.ult))} <b>${esc(f.ult.en)}</b> <span class="jp note" style="font-style:normal">${f.ult.jp}</span><div class="desc">${esc(f.ult.desc)}</div></div>`:''}</div></div></li>`;
+  ${f.ult&&role==='main'?`<div class="ult"><span class="lbl">Ultima</span>${tag(T(f.ult))} <b>${esc(f.ult.en)}</b><div class="desc">${esc(f.ult.desc)}</div></div>`:''}</div></div></li>`;
 }
 function viewSpell(id){
   const s=SP[id];if(!s){location.hash='#/';return}
   const main=asMain(s),sub=asSub(s).sort((a,b)=>rank(T(a))-rank(T(b)));
   const attrBlock=a=>{const fs=main.filter(f=>f.main.attr===a).sort((x,y)=>rank(T(x))-rank(T(y)));
-    return `<li class="attr"><div class="row">${tag(a.tier,1)}<div class="body"><div class="ttl">${esc(a.en)}<span class="jp">${a.jp}${a.stage?` · Lv${a.stage}`:''}${a.alias?` · aka ${esc(a.alias)}`:''}</span></div><div class="desc">${esc(a.desc)}</div></div></div>
-    ${fs.length?`<ul class="kids">${fs.map(f=>fusionLi(f,'main')).join('')}</ul>`:'<div class="none" style="margin-left:46px">No fusion upgrades this attribute.</div>'}</li>`};
+    return `<li class="attr"><div class="row">${tag(a.tier,1)}<div class="body"><div class="ttl">${esc(a.en)}<span class="sub">${a.stage?` · Lv${a.stage}`:''}${a.alias?` · aka ${esc(a.alias)}`:''}</span></div><div class="desc">${esc(a.desc)}</div></div></div>
+    ${fs.length?`<ul class="kids">${fs.map(f=>fusionLi(f,'main')).join('')}</ul>`:'<div class="none" style="margin-left:46px">No fusion uses this attribute as the primary spell.</div>'}</li>`};
   const extra=main.filter(f=>!f.main.attr);
   app.innerHTML=`<a class="back" href="#/">← All spells</a>
-  <div class="head"><span class="el" style="${elv(s)}"></span><h1>${esc(s.en)}</h1><span class="jp">${s.jp}</span><span style="margin-left:auto">${modeSeg()}</span></div>
+  <div class="head">${sImg(s,'lg')}<h1>${esc(s.en)}</h1><span class="el" style="${elv(s)}" title="${EL[s.el]}"></span><span class="sub">${EL[s.el]}</span><span style="margin-left:auto">${modeSeg()}</span></div>
   <div class="verdict">${verdict(s)}</div>
   <div class="meta"><div><b>Level-ups</b> (Lv2–6): ${esc(s.lv)}</div>${s.ench?`<div><b>Enchant</b>: ${esc(s.ench)}</div>`:''}<div><b>Artifacts</b>: ${s.art.length?esc(s.art.join(', ')):'none'}</div>${s.note?`<div>${esc(s.note)}</div>`:''}</div>
-  <h2>Attributes → fusions → ultimates</h2>
+  <h2>Attributes → fusions → Ultimas</h2>
   <p class="note" style="margin:0">A fusion needs <b>this exact attribute</b> on ${esc(s.en)} plus the partner spell with its listed attribute. ${esc(s.en)} is the primary spell: it gets the boost and keeps its artifacts; the partner is consumed.</p>
   <ul class="tree">${s.attrs.map(attrBlock).join('')}</ul>
   ${extra.length?`<ul class="tree"><li class="attr"><div class="ttl">Other</div><ul class="kids">${extra.map(f=>fusionLi(f,'main')).join('')}</ul></li></ul>`:''}
   <h2>Used as an ingredient</h2>
   ${sub.length?`<ul class="tree"><li class="attr"><ul class="kids" style="margin-top:0">${sub.map(f=>fusionLi(f,'sub')).join('')}</ul></li></ul>`:'<p class="none">Never used as an ingredient.</p>'}`;
-  window.scrollTo(0,0);
 }
 let tab='fusions';try{tab=sessionStorage.getItem('ms-tab')||'fusions'}catch(e){}
 function viewTiers(){
-  const tabs={attrs:'Attributes',fusions:'Fusions',ults:'Ultimates',passives:'Special passives'};
+  const tabs={attrs:'Attributes',fusions:'Fusions',ults:'Ultimas',passives:'Special passives'};
   let items=[];
-  if(tab==='attrs')items=SPELLS.flatMap(s=>s.attrs.map(a=>({t:a.tier,en:a.en,sub:s.en,href:'#/spell/'+s.id,el:s.el})));
-  if(tab==='fusions')items=FUS.map(f=>({t:T(f),en:f.en,sub:f.main.fusion?'Overmind + all passives':`${f.main.spell.en} + ${f.sub.spell?f.sub.spell.en:f.sub.passive}`,href:'#/spell/'+f.main.spell.id,el:f.main.spell.el}));
-  if(tab==='ults')items=ULT.map(u=>({t:T(u),en:u.en,sub:`from ${u.fusion.en}`,href:'#/spell/'+u.fusion.main.spell.id,el:u.fusion.main.spell.el}));
-  if(tab==='passives')items=PASSIVES.special.map(p=>({t:p[2],en:p[0],sub:p[3],href:'#/passives',el:'support'}));
+  if(tab==='attrs')items=SPELLS.flatMap(s=>s.attrs.map(a=>({t:a.tier,en:a.en,sub:s.en,href:'#/spell/'+s.id,el:s.el,ic:sImg(s,'sm')})));
+  if(tab==='fusions')items=FUS.map(f=>({t:T(f),en:f.en,sub:f.main.fusion?'Overmind + all passives':`${f.main.spell.en} + ${f.sub.spell?f.sub.spell.en:f.sub.passive}`,href:'#/spell/'+f.main.spell.id,el:f.main.spell.el,ic:fImg(f,'sm')}));
+  if(tab==='ults')items=ULT.map(u=>({t:T(u),en:u.en,sub:`from ${u.fusion.en}`,href:'#/spell/'+u.fusion.main.spell.id,el:u.fusion.main.spell.el,ic:fImg(u.fusion,'sm')}));
+  if(tab==='passives')items=PASSIVES.special.map(p=>({t:p[1],en:p[0],sub:p[2],href:'#/passives',el:'support',ic:pImg(p[0],'sm')}));
   const hasMode=tab==='fusions'||tab==='ults';
-  const rows=[...ORDER,null].map(t=>{const its=items.filter(i=>i.t===t);if(!its.length)return'';return `<div class="tierrow">${tag(t,1)}<div class="chips">${its.map(i=>`<a class="chip" style="--el:var(--${i.el})" href="${i.href}">${esc(i.en)}<small>${esc(i.sub)}</small></a>`).join('')}</div></div>`}).join('');
+  const rows=[...ORDER,null].map(t=>{const its=items.filter(i=>i.t===t);if(!its.length)return'';return `<div class="tierrow">${tag(t,1)}<div class="chips">${its.map(i=>`<a class="chip" style="--el:var(--${i.el})" href="${i.href}">${i.ic}<span>${esc(i.en)}<small>${esc(i.sub)}</small></span></a>`).join('')}</div></div>`}).join('');
   app.innerHTML=`<div class="bar"><span class="seg" role="tablist">${Object.entries(tabs).map(([k,v])=>`<button data-tab="${k}" class="${tab===k?'on':''}">${v}</button>`).join('')}</span>${hasMode?`<label>Tiers ${modeSeg()}</label>`:''}</div>
-  <p class="note" style="margin:0 0 6px">${tab==='attrs'?'Attribute tiers ignore fusions: how good the spell is on its own with that attribute.':tab==='passives'?'Special passives show up at fixed levels each run (also from the Unicorn artifact).':mode==='dem'?'Tiers when running Deus Ex Machina. Fusions marked – are not rated in that list.':'Standard tiers. × means worse than E.'}</p>${rows}`;
+  <p class="note" style="margin:0 0 6px">${tab==='attrs'?'Attribute tiers ignore fusions: how good the spell is on its own with that attribute.':tab==='passives'?'Special passives show up at fixed levels each run (also from the Unicorn artifact).':tab==='ults'?'Ultimas show the icon of the fusion they upgrade.':mode==='dem'?'Tiers when running Deus Ex Machina. Fusions marked – are not rated in that list.':'Standard tiers. × means worse than E.'}</p>${rows}`;
 }
 function viewPassives(){
   const tbl=(rows,h)=>`<table><thead><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table>`;
+  const nm=n=>`<span class="lnk">${pImg(n,'sm')}<b>${esc(n)}</b></span>`;
   app.innerHTML=`<h2>Special passives</h2><p class="note">Offered at fixed levels in each run, up to a dozen or so times. Not offered when taking the Mana option.</p>
-  ${tbl([...PASSIVES.special].sort((a,b)=>rank(a[2])-rank(b[2])).map(p=>`<tr><td>${tag(p[2])}</td><td><b>${esc(p[0])}</b><br><span class="note" style="font-style:normal">${p[1]}</span></td><td>${esc(p[3])}</td></tr>`),['Tier','Name','Effect'])}
+  ${tbl([...PASSIVES.special].sort((a,b)=>rank(a[1])-rank(b[1])).map(p=>`<tr><td>${tag(p[1])}</td><td>${nm(p[0])}</td><td>${esc(p[2])}</td></tr>`),['Tier','Name','Effect'])}
   <h2>Regular passives</h2><p class="note">No tier: their value depends on your fusions.</p>
-  ${tbl(PASSIVES.regular.map(p=>`<tr><td><b>${esc(p[0])}</b><br><span class="note" style="font-style:normal">${p[1]}</span></td><td>${p[2]}</td><td>${esc(p[3])}</td></tr>`),['Name','Max Lv','Effect'])}
+  ${tbl(PASSIVES.regular.map(p=>`<tr><td>${nm(p[0])}</td><td>${p[1]}</td><td>${esc(p[2])}</td></tr>`),['Name','Max Lv','Effect'])}
   <h2>Growth passives</h2><p class="note">Only offered once you reach max level; up to 50 levels in total.</p>
-  ${tbl(PASSIVES.growth.map(p=>`<tr><td><b>${esc(p[0])}</b><br><span class="note" style="font-style:normal">${p[1]}</span></td><td>${p[2]}</td><td>${esc(p[3])}</td></tr>`),['Name','Max Lv','Effect'])}`;
+  ${tbl(PASSIVES.growth.map(p=>`<tr><td><b>${esc(p[0])}</b></td><td>${p[1]}</td><td>${esc(p[2])}</td></tr>`),['Name','Max Lv','Effect'])}`;
 }
 function viewAbout(){
   app.innerHTML=`<div class="prose"><h2>How it works</h2>
   <p>Attack spells max out at <b>Lv7</b>, utility spells at <b>Lv5</b>; at max level you pick <b>one of three attributes</b>. Magic Bolt is special: it gets one attribute at Lv4 and another at Lv7.</p>
-  <p>A <b>fusion</b> combines two max-level spells, each with a specific attribute. The <b>primary</b> spell gets the boost and keeps its artifacts; the <b>secondary</b> is consumed, and its artifacts stop helping. You get a fusion slot at character Lv25, 50 and 75.</p>
-  <p>An <b>ultimate</b> is a much stronger version of a fusion. It triggers at Lv100 when you play the fusion's matching Class and Subject. Ultimates unlock by clearing cities.</p>
+  <p>A <b>fusion</b> (Magic Combination) merges two max-level spells, each with a specific attribute. The <b>primary</b> spell gets the boost and keeps its artifacts; the <b>secondary</b> is consumed, and its artifacts stop helping. You get a fusion slot at character Lv25, 50 and 75.</p>
+  <p>An <b>Ultima</b> is a much stronger version of a fusion, unlocked by clearing cities. It triggers when your Subject reaches <b>Lv100</b> while you have the matching Class and the fusion; it then replaces the fusion. Level 100 is spent on it.</p>
   <h2>Tiers</h2>
-  <p>Tiers come from the Japanese wiki (author: atomon, game version 0.981). They rate how much a spell helps you <b>survive long runs</b>, assuming a build around Cosmos or Ascension. They are one player's opinion. A low tier does not mean the spell can't clear Terra (Hard) past 40 minutes. × means worse than E.</p>
-  <p><b>Standard</b> is the normal ranking. <b>Deus Ex Machina</b> rates the same fusions in a run that ends with Deus Ex Machina (Overmind + 3rd fusion), where the ranking changes a lot. Attribute tiers ignore fusions.</p>
-  <h2>Translation</h2>
-  <p>Japanese names are matched to the official English names from the Fandom wiki. When the two wikis disagree, this site follows the newer Japanese one, and the other name stays searchable as “aka”. Fusion descriptions come from Fandom (v0.956), so some numbers may be out of date. Ultimate descriptions are translated from the Japanese wiki. Glacium, Soul Blade and Discharge are not on Fandom yet.</p>
-  <p>Sources: <a href="https://w.atwiki.jp/magicsurvival/pages/15.html">マジサバwiki · 魔法(紹介&amp;tier)</a>, <a href="https://magic-survival-rpg.fandom.com/wiki/Magic_Combination">Fandom · Magic Combination</a>.</p></div>`;
+  <p>Tiers come from atomon's tier list (game version 0.981). They rate how much a spell helps you <b>survive long runs</b>, assuming a build around the Cosmos or Ascension Ultima. They are one player's opinion: a low tier doesn't mean the spell can't go past 40 minutes on Terra (Hard). × means worse than E.</p>
+  <p><b>Standard</b> is the normal ranking. <b>Deus Ex Machina</b> rates the same fusions for a run ending with Deus Ex Machina (Overmind, then a 3rd fusion), where the ranking changes a lot. Attribute tiers ignore fusions.</p>
+  <h2>Names and descriptions</h2>
+  <p>Names, icons, and attribute and fusion descriptions follow the <a href="https://magic-survival-rpg.fandom.com/wiki/Magic_Combination">Magic Survival Fandom wiki</a>. Some of its numbers date from v0.956. The wiki is inconsistent about a few attribute names; the other spelling stays searchable as “aka”. Glacium, Soul Blade and Discharge, and the Ultimas, are newer than the wiki: their names may differ slightly in game, and the three fusions have no description or icon yet.</p></div>`;
 }
 // ---------- ROUTER ----------
 function route(){
@@ -394,7 +424,7 @@ function route(){
   if(k==='spell')viewSpell(id);else if(k==='tiers')viewTiers();else if(k==='passives')viewPassives();else if(k==='about')viewAbout();else viewSpells();
 }
 document.addEventListener('click',e=>{
-  const m=e.target.closest('[data-mode]');if(m){mode=m.dataset.mode;try{localStorage.setItem('ms-mode',mode)}catch(_){}route();return}
+  const m=e.target.closest('[data-mode]');if(m){mode=m.dataset.mode;try{localStorage.setItem('ms-mode',mode)}catch(_){}const y=scrollY;route();scrollTo(0,y);return}
   const t=e.target.closest('[data-tab]');if(t){tab=t.dataset.tab;try{sessionStorage.setItem('ms-tab',tab)}catch(_){}route()}
 });
 addEventListener('hashchange',route);route();
