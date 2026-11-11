@@ -57,6 +57,8 @@ h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mute
 .kids{list-style:none;margin:10px 0 0 13px;padding:0 0 0 18px;border-left:2px solid var(--line)}
 .kids>li{position:relative;padding:8px 0}
 .kids>li::before{content:"";position:absolute;left:-18px;top:20px;width:14px;border-top:2px solid var(--line)}
+.grp{margin:10px 0 -4px 13px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.grp.up{color:var(--tC)}.grp.down{color:var(--tA)}.grp .sub{text-transform:none;letter-spacing:0;font-size:12px}
 .fx{color:var(--muted);font-size:14px}
 .fx a{font-weight:600}
 .ult{margin-top:6px;padding:7px 10px;background:var(--panel2);border-radius:8px;font-size:14px}
@@ -359,27 +361,27 @@ function verdict(s){
 function fusionLi(f,role){
   const other=role==='main'?f.sub:f.main;const v=mode==='dem'?f.var.dem:f.var.std;
   return `<li><div class="row">${fImg(f,'sm')}<div class="body"><div class="ttl">${tag(T(f))} ${esc(f.en)}</div>
-  <div class="fx">${role==='main'?'+ ':'Upgrades '}${refHTML(other)}${role==='sub'?` <span class="sub">— this spell is consumed</span>`:''}</div>
+  <div class="fx">${role==='main'?'+ ':'Upgrades '}${refHTML(other)}</div>
   ${f.desc?`<div class="desc">${esc(f.desc)}</div>`:''}${v?`<div class="note">${esc(v)}</div>`:''}${f.note?`<div class="note">${esc(f.note)}</div>`:''}
   ${f.ult&&role==='main'?`<div class="ult"><span class="lbl">Ultima</span>${tag(T(f.ult))} <b>${esc(f.ult.en)}</b><div class="desc">${esc(f.ult.desc)}</div></div>`:''}</div></div></li>`;
 }
 function viewSpell(id){
   const s=SP[id];if(!s){location.hash='#/';return}
   const main=asMain(s),sub=asSub(s).sort((a,b)=>rank(T(a))-rank(T(b)));
-  const attrBlock=a=>{const fs=main.filter(f=>f.main.attr===a).sort((x,y)=>rank(T(x))-rank(T(y)));
+  const attrBlock=a=>{const fs=main.filter(f=>f.main.attr===a).sort((x,y)=>rank(T(x))-rank(T(y)));const gs=sub.filter(f=>f.sub.attr===a);
     return `<li class="attr"><div class="row">${tag(a.tier,1)}<div class="body"><div class="ttl">${esc(a.en)}<span class="sub">${a.stage?` · Lv${a.stage}`:''}${a.alias?` · aka ${esc(a.alias)}`:''}</span></div><div class="desc">${esc(a.desc)}</div></div></div>
-    ${fs.length?`<ul class="kids">${fs.map(f=>fusionLi(f,'main')).join('')}</ul>`:'<div class="none" style="margin-left:46px">No fusion uses this attribute as the primary spell.</div>'}</li>`};
+    ${fs.length?`<div class="grp up">Upgrades ${esc(s.en)}</div><ul class="kids">${fs.map(f=>fusionLi(f,'main')).join('')}</ul>`:''}
+    ${gs.length?`<div class="grp down">Consumes ${esc(s.en)} <span class="sub">— the other spell gets the boost</span></div><ul class="kids">${gs.map(f=>fusionLi(f,'sub')).join('')}</ul>`:''}
+    ${!fs.length&&!gs.length?'<div class="none" style="margin-left:46px">No fusion uses this attribute.</div>':''}</li>`};
   const extra=main.filter(f=>!f.main.attr);
   app.innerHTML=`<a class="back" href="#/">← All spells</a>
   <div class="head">${sImg(s,'lg')}<h1>${esc(s.en)}</h1><span class="el" style="${elv(s)}" title="${EL[s.el]}"></span><span class="sub">${EL[s.el]}</span><span style="margin-left:auto">${modeSeg()}</span></div>
   <div class="verdict">${verdict(s)}</div>
   <div class="meta"><div><b>Level-ups</b> (Lv2–6): ${esc(s.lv)}</div>${s.ench?`<div><b>Enchant</b>: ${esc(s.ench)}</div>`:''}<div><b>Artifacts</b>: ${s.art.length?esc(s.art.join(', ')):'none'}</div>${s.note?`<div>${esc(s.note)}</div>`:''}</div>
   <h2>Attributes → fusions → Ultimas</h2>
-  <p class="note" style="margin:0">A fusion needs <b>this exact attribute</b> on ${esc(s.en)} plus the partner spell with its listed attribute. ${esc(s.en)} is the primary spell: it gets the boost and keeps its artifacts; the partner is consumed.</p>
+  <p class="note" style="margin:0">Each fusion needs <b>this exact attribute</b> on ${esc(s.en)} plus the partner spell with the attribute shown. <b>Upgrades</b>: ${esc(s.en)} is the primary spell, gets the boost and keeps its artifacts. <b>Consumes</b>: ${esc(s.en)} is the secondary spell and disappears into the partner.</p>
   <ul class="tree">${s.attrs.map(attrBlock).join('')}</ul>
-  ${extra.length?`<ul class="tree"><li class="attr"><div class="ttl">Other</div><ul class="kids">${extra.map(f=>fusionLi(f,'main')).join('')}</ul></li></ul>`:''}
-  <h2>Used as an ingredient</h2>
-  ${sub.length?`<ul class="tree"><li class="attr"><ul class="kids" style="margin-top:0">${sub.map(f=>fusionLi(f,'sub')).join('')}</ul></li></ul>`:'<p class="none">Never used as an ingredient.</p>'}`;
+  ${extra.length?`<ul class="tree"><li class="attr"><div class="ttl">Other</div><ul class="kids">${extra.map(f=>fusionLi(f,'main')).join('')}</ul></li></ul>`:''}`;
 }
 let tab='fusions';try{tab=sessionStorage.getItem('ms-tab')||'fusions'}catch(e){}
 function viewTiers(){
