@@ -1,5 +1,7 @@
 # Magic Survival · Spells & fusions
 
+[Open the app](https://phyrise.github.io/magic/)
+
 English companion for Magic Survival. Pick the spell the game offers you and see:
 
 - its 3 **attributes** (the choice at max level), with tiers;
