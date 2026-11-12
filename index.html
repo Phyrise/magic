@@ -17,6 +17,9 @@ header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:14px
 nav{display:flex;gap:4px;flex-wrap:wrap}
 nav a{padding:7px 12px;border-radius:8px;text-decoration:none;color:var(--muted)}
 nav a.on{background:var(--panel2);color:var(--ink)}
+.opt{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:14px;cursor:pointer;user-select:none}
+.opt input{accent-color:var(--accent);width:16px;height:16px;margin:0;cursor:pointer}
+.noult .u-only{display:none}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .seg button{background:none;border:0;padding:6px 11px;cursor:pointer;color:var(--muted);font-size:14px}
 .seg button.on{background:var(--accent);color:#1a1426;font-weight:700}
@@ -82,8 +85,8 @@ footer{margin-top:40px;font-size:13px;color:var(--muted)}
 @media (max-width:600px){.shell{padding:0 14px 40px}.head h1{font-size:24px}.kids{margin-left:6px;padding-left:14px}.kids>li::before{left:-14px;width:10px}}
 </style></head>
 <body><div class="shell">
-<header><a class="brand" href="#/">Magic Survival <small>spells · fusions · Ultimas</small></a>
-<nav id="nav"><a href="#/" data-k="spells">Spells</a><a href="#/tiers" data-k="tiers">Tier lists</a><a href="#/passives" data-k="passives">Passives</a><a href="#/about" data-k="about">About</a></nav></header>
+<header><a class="brand" href="#/">Magic Survival <small>spells · fusions<span class="u-only"> · Ultimas</span></small></a>
+<nav id="nav"><a href="#/" data-k="spells">Spells</a><a href="#/tiers" data-k="tiers">Tier lists</a><a href="#/passives" data-k="passives">Passives</a><a href="#/about" data-k="about">About</a></nav><label class="opt" title="Uncheck if you haven’t unlocked Ultimas yet"><input type="checkbox" id="showU" checked> Ultimas</label></header>
 <main id="app"></main>
 <footer>Tiers: atomon’s tier list (game v0.981). Names, icons and descriptions: <a href="https://magic-survival-rpg.fandom.com/">Magic Survival Fandom wiki</a> (CC BY-SA). Unofficial fan tool.</footer>
 </div>
@@ -309,7 +312,9 @@ const ref=r=>{if(r.startsWith('passive:'))return{passive:r.slice(8)};if(r.starts
 const FUS=FUSIONS.map(f=>({id:f[0],en:f[1],tier:f[2],dem:f[3],main:ref(f[4]),sub:ref(f[5]),desc:f[6],note:f[7]||'',var:f[8]||{}}));
 FUS.forEach(f=>FU[f.id]=f);
 const ULT=ULTS.map(u=>({en:u[0],tier:u[1],dem:u[2],fusion:FU[u[3]],desc:u[4]}));
-ULT.forEach(u=>u.fusion.ult=u);
+// Ultimas can be hidden (late-game unlock): fusions then simply have no .ult.
+let showU=true;try{showU=localStorage.getItem('ms-ult')!=='0'}catch(e){}
+const applyU=()=>{ULT.forEach(u=>u.fusion.ult=showU?u:null);document.documentElement.classList.toggle('noult',!showU)};applyU();
 // Icons (Fandom wiki art, resized to 64 px WebP). Fusions newer than the wiki have none.
 const NOIMG=new Set(['glacium','soulblade','discharge']);
 const PIMG=new Set(['intelligence','fast-casting','vitality','haste','arcane-effuse','concentration','snipe','explorer','lord-of-fire','stormy-clouds','natures-wrath','energy-engineering','arcana','guardian-angel','silent-casting','war-magic','timekeeper','pioneer','smite','seal','curse','chakra','mana-factory','doctor','blood-magic','adrenaline','juggernaut','priest','eldritch','noblesse','taoist']);
@@ -338,8 +343,8 @@ let q='';
 function viewSpells(){
   const groups=['arcane','fire','storm','nature','energy','support'];
   const match=s=>{if(!q)return true;const n=q.toLowerCase();return [s.en,...s.attrs.flatMap(a=>[a.en,a.alias]),...asMain(s).flatMap(f=>[f.en,f.ult?f.ult.en:''])].some(x=>x&&x.toLowerCase().includes(n))};
-  app.innerHTML=`<div class="bar"><label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Spell, attribute, fusion or Ultima" value="${esc(q)}" autocomplete="off"></label><label>Fusion tiers ${modeSeg()}</label></div>
-  <p class="note" style="margin:0">Offered a spell? Open it to see its attributes, the fusions it powers up, and the Ultimas behind them. Badges: best <b>attribute</b> · best <b>fusion</b> · best <b>Ultima</b>.</p>
+  app.innerHTML=`<div class="bar"><label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="${showU?'Spell, attribute, fusion or Ultima':'Spell, attribute or fusion'}" value="${esc(q)}" autocomplete="off"></label><label>Fusion tiers ${modeSeg()}</label></div>
+  <p class="note" style="margin:0">Offered a spell? Open it to see its attributes, the fusions it powers up${showU?', and the Ultimas behind them':''}. Badges: best <b>attribute</b> · best <b>fusion</b>${showU?' · best <b>Ultima</b>':''}.</p>
   <div id="list"></div>`;
   const list=document.getElementById('list');
   const draw=()=>{list.innerHTML=groups.map(g=>{const ss=SPELLS.filter(s=>s.el===g&&match(s));if(!ss.length)return'';return `<h2>${EL[g]}</h2><div class="grid">${ss.map(s=>{const m=summary(s);return `<a class="card" style="${elv(s)}" href="#/spell/${s.id}">${sImg(s,'md')}<span><span class="nm">${esc(s.en)}</span><span class="sum"><span>Attr ${tag(m.at)}</span><span>Fusion ${m.fm.length?tag(m.ft):'<span class="note">none</span>'}</span>${m.fm.some(f=>f.ult)?`<span>Ultima ${tag(m.ut)}</span>`:''}</span></span></a>`}).join('')}</div>`}).join('')||'<p class="none">No match.</p>'};
@@ -378,14 +383,15 @@ function viewSpell(id){
   <div class="head">${sImg(s,'lg')}<h1>${esc(s.en)}</h1><span class="el" style="${elv(s)}" title="${EL[s.el]}"></span><span class="sub">${EL[s.el]}</span><span style="margin-left:auto">${modeSeg()}</span></div>
   <div class="verdict">${verdict(s)}</div>
   <div class="meta"><div><b>Level-ups</b> (Lv2–6): ${esc(s.lv)}</div>${s.ench?`<div><b>Enchant</b>: ${esc(s.ench)}</div>`:''}<div><b>Artifacts</b>: ${s.art.length?esc(s.art.join(', ')):'none'}</div>${s.note?`<div>${esc(s.note)}</div>`:''}</div>
-  <h2>Attributes → fusions → Ultimas</h2>
+  <h2>Attributes → fusions${showU?' → Ultimas':''}</h2>
   <p class="note" style="margin:0">Each fusion needs <b>this exact attribute</b> on ${esc(s.en)} plus the partner spell with the attribute shown. <b>Upgrades</b>: ${esc(s.en)} is the primary spell, gets the boost and keeps its artifacts. <b>Consumes</b>: ${esc(s.en)} is the secondary spell and disappears into the partner.</p>
   <ul class="tree">${s.attrs.map(attrBlock).join('')}</ul>
   ${extra.length?`<ul class="tree"><li class="attr"><div class="ttl">Other</div><ul class="kids">${extra.map(f=>fusionLi(f,'main')).join('')}</ul></li></ul>`:''}`;
 }
 let tab='fusions';try{tab=sessionStorage.getItem('ms-tab')||'fusions'}catch(e){}
 function viewTiers(){
-  const tabs={attrs:'Attributes',fusions:'Fusions',ults:'Ultimas',passives:'Special passives'};
+  if(!showU&&tab==='ults')tab='fusions';
+  const tabs={attrs:'Attributes',fusions:'Fusions',...(showU?{ults:'Ultimas'}:{}),passives:'Special passives'};
   let items=[];
   if(tab==='attrs')items=SPELLS.flatMap(s=>s.attrs.map(a=>({t:a.tier,en:a.en,sub:s.en,href:'#/spell/'+s.id,el:s.el,ic:sImg(s,'sm')})));
   if(tab==='fusions')items=FUS.map(f=>({t:T(f),en:f.en,sub:f.main.fusion?'Overmind + all passives':`${f.main.spell.en} + ${f.sub.spell?f.sub.spell.en:f.sub.passive}`,href:'#/spell/'+f.main.spell.id,el:f.main.spell.el,ic:fImg(f,'sm')}));
@@ -429,5 +435,7 @@ document.addEventListener('click',e=>{
   const m=e.target.closest('[data-mode]');if(m){mode=m.dataset.mode;try{localStorage.setItem('ms-mode',mode)}catch(_){}const y=scrollY;route();scrollTo(0,y);return}
   const t=e.target.closest('[data-tab]');if(t){tab=t.dataset.tab;try{sessionStorage.setItem('ms-tab',tab)}catch(_){}route()}
 });
+document.addEventListener('change',e=>{if(e.target.id!=='showU')return;showU=e.target.checked;try{localStorage.setItem('ms-ult',showU?'1':'0')}catch(_){}applyU();const y=scrollY;route();scrollTo(0,y)});
+document.getElementById('showU').checked=showU;
 addEventListener('hashchange',route);route();
 </script></body></html>
